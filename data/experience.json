@@ -1,0 +1,67 @@
+{
+  "items": [
+    {
+      "num": "01",
+      "job": "Freelance CMS Web Developer",
+      "company": "Web Design Firm",
+      "location": "USA \u00b7 Remote",
+      "date": "Sept 2024 \u2013 Mar 2026",
+      "bullets": [
+        "Built & optimized 70+ websites on Duda, Wix, Shopify, and Webflow \u2014 responsive, fast, and user-friendly.",
+        "Achieved an average SEO audit score of 85% through on-page and technical SEO strategies.",
+        "Executed content strategies including proofreading, video editing, and brand visual design.",
+        "Delivered consistent, high-quality output across a diverse portfolio of US-based clients."
+      ]
+    },
+    {
+      "num": "02",
+      "job": "Head of Web Design",
+      "company": "Tradepro360",
+      "location": "UK \u00b7 Remote",
+      "date": "Jan 2026 \u2013 Feb 2026",
+      "bullets": [
+        "Established automated project management workflows, SOPs, and design systems for the web team.",
+        "Implemented Client-First naming and built scalable Webflow templates with Relume components.",
+        "Designed high-fidelity mockups and trained junior developers on Webflow best practices.",
+        "Led internal workflows and mentored the development team on standards."
+      ]
+    },
+    {
+      "num": "03",
+      "job": "Social Media Manager & Web Dev",
+      "company": "Top10Vacation",
+      "location": "USA \u00b7 Remote",
+      "date": "May 2025 \u2013 Aug 2025",
+      "bullets": [
+        "Built a Record Management System in Wix Velo (JavaScript) to automate internal workflows.",
+        "Managed Shopify store for Crush Planners \u2014 Liquid code, plugin config, SEO, layout improvements.",
+        "Designed & scheduled Facebook and Instagram content at 4\u20135 posts/week consistently.",
+        "Improved store layout and performance for sustained organic growth."
+      ]
+    },
+    {
+      "num": "04",
+      "job": "Product Support Specialist",
+      "company": "DecoNetwork",
+      "location": "USA \u00b7 Remote",
+      "date": "Dec 2024 \u2013 May 2025",
+      "bullets": [
+        "Diagnosed and resolved complex technical issues on the DecoNetwork platform with minimal downtime.",
+        "Assisted clients building, configuring, and customizing eCommerce websites from scratch.",
+        "Resolved front-end and integration issues using HTML, CSS, and internal tools.",
+        "Maintained a 95% customer satisfaction rating through technically sound support."
+      ]
+    },
+    {
+      "num": "05",
+      "job": "Internship",
+      "company": "SILI DELI BU-DOST TBI",
+      "location": "Legazpi City, Albay",
+      "date": "Feb 2024 \u2013 May 2024",
+      "bullets": [
+        "Supported project management for startup BiNNO \u2014 coordinating timelines, tasks, and deliverables.",
+        "Developed and improved the startup's landing page and UI using React.js and Tailwind CSS."
+      ]
+    }
+  ]
+}

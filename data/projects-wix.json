@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "name": "Fix That Mac",
+      "url": "https://www.fixthatmac.net/",
+      "tag": "Wix \u00b7 Tech Repair",
+      "img": "https://static.wixstatic.com/media/ccbd72_c4be15ec545641c2853050f2e2ca6cb0~mv2.png"
+    },
+    {
+      "name": "Christian Golfers",
+      "url": "https://www.christiangolfers.org/",
+      "tag": "Wix \u00b7 Nonprofit",
+      "img": "https://static.wixstatic.com/media/ccbd72_629275f0ed81408095eea54e1fe00659~mv2.png"
+    },
+    {
+      "name": "Guards Up Counseling",
+      "url": "https://www.guardsupcounseling.com/",
+      "tag": "Wix \u00b7 Healthcare",
+      "img": "https://static.wixstatic.com/media/ccbd72_5334ea1b81194a08b636c7f02a82fa2c~mv2.png"
+    }
+  ]
+}

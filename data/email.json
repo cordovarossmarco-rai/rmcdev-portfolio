@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "name": "Campaign Design #1",
+      "tag": "Klaviyo \u00b7 Automation",
+      "img": "",
+      "tools": [
+        "Klaviyo",
+        "Mailchimp"
+      ]
+    },
+    {
+      "name": "Campaign Design #2",
+      "tag": "Mailchimp \u00b7 Campaign",
+      "img": "",
+      "tools": [
+        "Mailchimp",
+        "Klaviyo"
+      ]
+    }
+  ]
+}

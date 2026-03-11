@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "name": "Crush Planners",
+      "tag": "Instagram Reels \u00b7 eCommerce",
+      "note": "Product showcase & social content",
+      "thumb": "https://static.wixstatic.com/media/ccbd72_e8c413bce2b746c3bc20e02151d99ee0~mv2.png",
+      "video_platform": "link",
+      "video_url": "https://crushplanners.com/"
+    },
+    {
+      "name": "Springfield Fiberglass Pools",
+      "tag": "Brand Video \u00b7 Home Services",
+      "note": "Brand story & service showcase",
+      "thumb": "https://static.wixstatic.com/media/ccbd72_75bcbe19040f4544b3caf335431f6648~mv2.png",
+      "video_platform": "link",
+      "video_url": "https://www.springfieldfiberglass-pools.com/"
+    },
+    {
+      "name": "Fix That Mac",
+      "tag": "Social Content \u00b7 Tech",
+      "note": "Facebook & Instagram content",
+      "thumb": "https://static.wixstatic.com/media/ccbd72_c4be15ec545641c2853050f2e2ca6cb0~mv2.png",
+      "video_platform": "link",
+      "video_url": "https://www.fixthatmac.net/"
+    }
+  ]
+}

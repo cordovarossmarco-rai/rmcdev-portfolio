@@ -1,0 +1,269 @@
+{
+  "_comment": "EDIT THIS FILE to update your portfolio content. Save and push to GitHub \u2014 site updates automatically.",
+  "site": {
+    "title": "RMCDev \u2014 CMS Web Developer & Digital Specialist",
+    "status_badge": "Available for new projects"
+  },
+  "hero": {
+    "name": "Ross Marco Cordova",
+    "title_line1": "CMS Web",
+    "title_line2": "Developer",
+    "title_line3": "& Digital",
+    "title_line4": "Specialist",
+    "description": "70+ websites built for US-based clients \u2014 fast, SEO-optimized, and built to convert. Wix \u00b7 Webflow \u00b7 Shopify \u00b7 Duda \u00b7 Design \u00b7 Email.",
+    "resume_url": "https://caa41c45-2f0a-4dd0-ba66-8ead87dbd5a9.filesusr.com/ugd/ccbd72_41ca8a5805ec41d0983dd967b3aaaa2f.pdf"
+  },
+  "stats": [
+    {
+      "number": 70,
+      "suffix": "+",
+      "label": "Websites\nDeveloped",
+      "accent": "green"
+    },
+    {
+      "number": 70,
+      "suffix": "+",
+      "label": "Sites\nSEO-Optimized",
+      "accent": "gold"
+    },
+    {
+      "number": 95,
+      "suffix": "%",
+      "label": "Client\nSatisfaction",
+      "accent": "green"
+    },
+    {
+      "number": 2,
+      "suffix": "+",
+      "label": "Years of\nExperience",
+      "accent": "gold"
+    }
+  ],
+  "projects": {
+    "wix": [
+      {
+        "name": "Fix That Mac",
+        "url": "https://www.fixthatmac.net/",
+        "tag": "Wix \u00b7 Tech Repair",
+        "img": "https://static.wixstatic.com/media/ccbd72_c4be15ec545641c2853050f2e2ca6cb0~mv2.png"
+      },
+      {
+        "name": "Christian Golfers",
+        "url": "https://www.christiangolfers.org/",
+        "tag": "Wix \u00b7 Nonprofit",
+        "img": "https://static.wixstatic.com/media/ccbd72_629275f0ed81408095eea54e1fe00659~mv2.png"
+      },
+      {
+        "name": "Guards Up Counseling",
+        "url": "https://www.guardsupcounseling.com/",
+        "tag": "Wix \u00b7 Healthcare",
+        "img": "https://static.wixstatic.com/media/ccbd72_5334ea1b81194a08b636c7f02a82fa2c~mv2.png"
+      }
+    ],
+    "webflow": [
+      {
+        "name": "Blueline Plumbing",
+        "url": "https://blueline-plumbing.webflow.io/",
+        "tag": "Webflow \u00b7 Home Services",
+        "img": "https://static.wixstatic.com/media/ccbd72_b49f2681feca4ac88bf6b34dbe7a0900~mv2.png"
+      },
+      {
+        "name": "Inglesrud Corporation",
+        "url": "https://www.inglesrudcorporation.com/",
+        "tag": "Webflow \u00b7 Corporate",
+        "img": "https://static.wixstatic.com/media/ccbd72_d2f7e4c9c6fc435cbd7b41287f434f5c~mv2.png"
+      }
+    ],
+    "shopify": [
+      {
+        "name": "Crush Planners",
+        "url": "https://crushplanners.com/",
+        "tag": "Shopify \u00b7 eCommerce",
+        "img": "https://static.wixstatic.com/media/ccbd72_e8c413bce2b746c3bc20e02151d99ee0~mv2.png"
+      },
+      {
+        "name": "Coming Soon",
+        "url": "",
+        "tag": "Shopify \u00b7 eCommerce",
+        "img": "",
+        "placeholder": true
+      }
+    ],
+    "duda": [
+      {
+        "name": "Coming Soon",
+        "url": "",
+        "tag": "Duda \u00b7 Home Services",
+        "img": "",
+        "placeholder": true
+      },
+      {
+        "name": "Coming Soon",
+        "url": "",
+        "tag": "Duda \u00b7 Professional Services",
+        "img": "",
+        "placeholder": true
+      }
+    ]
+  },
+  "seo": [
+    {
+      "site": "East Boston Law",
+      "industry": "Legal \u00b7 Wix",
+      "before": 54,
+      "after": 85
+    },
+    {
+      "site": "Guards Up Counseling",
+      "industry": "Healthcare \u00b7 Wix",
+      "before": 57,
+      "after": 85
+    },
+    {
+      "site": "Crush Planners",
+      "industry": "eCommerce \u00b7 Shopify",
+      "before": 59,
+      "after": 85
+    }
+  ],
+  "graphic_design": [
+    {
+      "name": "East Boston Law",
+      "url": "https://www.eastbostonlaw.com/",
+      "tag": "Legal \u00b7 Brand Identity",
+      "img": "https://static.wixstatic.com/media/ccbd72_08c67a3ed0d248b9adad314865c92022~mv2.png"
+    },
+    {
+      "name": "Christian Golfers",
+      "url": "https://www.christiangolfers.org/",
+      "tag": "Nonprofit \u00b7 Brand",
+      "img": "https://static.wixstatic.com/media/ccbd72_629275f0ed81408095eea54e1fe00659~mv2.png"
+    },
+    {
+      "name": "Guards Up Counseling",
+      "url": "https://www.guardsupcounseling.com/",
+      "tag": "Healthcare \u00b7 Visual Design",
+      "img": "https://static.wixstatic.com/media/ccbd72_5334ea1b81194a08b636c7f02a82fa2c~mv2.png"
+    }
+  ],
+  "videos": [
+    {
+      "name": "Crush Planners",
+      "tag": "Instagram Reels \u00b7 eCommerce",
+      "note": "Product showcase & social content",
+      "thumb": "https://static.wixstatic.com/media/ccbd72_e8c413bce2b746c3bc20e02151d99ee0~mv2.png",
+      "video_url": "https://crushplanners.com/",
+      "video_platform": "link",
+      "_comment": "Set video_platform to: youtube, facebook, tiktok, or link. For youtube paste full URL like https://www.youtube.com/watch?v=XXXX"
+    },
+    {
+      "name": "Springfield Fiberglass Pools",
+      "tag": "Brand Video \u00b7 Home Services",
+      "note": "Brand story & service showcase",
+      "thumb": "https://static.wixstatic.com/media/ccbd72_75bcbe19040f4544b3caf335431f6648~mv2.png",
+      "video_url": "https://www.springfieldfiberglass-pools.com/",
+      "video_platform": "link"
+    },
+    {
+      "name": "Fix That Mac",
+      "tag": "Social Content \u00b7 Tech",
+      "note": "Facebook & Instagram content",
+      "thumb": "https://static.wixstatic.com/media/ccbd72_c4be15ec545641c2853050f2e2ca6cb0~mv2.png",
+      "video_url": "https://www.fixthatmac.net/",
+      "video_platform": "link"
+    }
+  ],
+  "email_campaigns": [
+    {
+      "name": "Campaign Design #1",
+      "tag": "Klaviyo \u00b7 Automation",
+      "img": "",
+      "tools": [
+        "Klaviyo",
+        "Mailchimp"
+      ],
+      "_comment": "Add your screenshot: upload image to /images folder, then set img to images/your-file.jpg"
+    },
+    {
+      "name": "Campaign Design #2",
+      "tag": "Mailchimp \u00b7 Campaign",
+      "img": "",
+      "tools": [
+        "Mailchimp",
+        "Klaviyo"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "num": "01",
+      "job": "Freelance CMS Web Developer",
+      "company": "Web Design Firm",
+      "location": "USA \u00b7 Remote",
+      "date": "Sept 2024 \u2013 Mar 2026",
+      "bullets": [
+        "Built & optimized 70+ websites on Duda, Wix, Shopify, and Webflow \u2014 responsive, fast, and user-friendly.",
+        "Achieved an average SEO audit score of 85% through on-page and technical SEO strategies.",
+        "Executed content strategies including proofreading, video editing, and brand visual design.",
+        "Delivered consistent, high-quality output across a diverse portfolio of US-based clients."
+      ]
+    },
+    {
+      "num": "02",
+      "job": "Head of Web Design",
+      "company": "Tradepro360",
+      "location": "UK \u00b7 Remote",
+      "date": "Jan 2026 \u2013 Feb 2026",
+      "bullets": [
+        "Established automated project management workflows, SOPs, and design systems for the web team.",
+        "Implemented Client-First naming and built scalable Webflow templates with Relume components.",
+        "Designed high-fidelity mockups and trained junior developers on Webflow best practices.",
+        "Led internal workflows and mentored the development team on standards."
+      ]
+    },
+    {
+      "num": "03",
+      "job": "Social Media Manager & Web Dev",
+      "company": "Top10Vacation",
+      "location": "USA \u00b7 Remote",
+      "date": "May 2025 \u2013 Aug 2025",
+      "bullets": [
+        "Built a Record Management System in Wix Velo (JavaScript) to automate internal workflows.",
+        "Managed Shopify store for Crush Planners \u2014 Liquid code, plugin config, SEO, layout improvements.",
+        "Designed & scheduled Facebook and Instagram content at 4\u20135 posts/week consistently.",
+        "Improved store layout and performance for sustained organic growth."
+      ]
+    },
+    {
+      "num": "04",
+      "job": "Product Support Specialist",
+      "company": "DecoNetwork",
+      "location": "USA \u00b7 Remote",
+      "date": "Dec 2024 \u2013 May 2025",
+      "bullets": [
+        "Diagnosed and resolved complex technical issues on the DecoNetwork platform with minimal downtime.",
+        "Assisted clients building, configuring, and customizing eCommerce websites from scratch.",
+        "Resolved front-end and integration issues using HTML, CSS, and internal tools.",
+        "Maintained a 95% customer satisfaction rating through technically sound support."
+      ]
+    },
+    {
+      "num": "05",
+      "job": "Internship",
+      "company": "SILI DELI BU-DOST TBI",
+      "location": "Legazpi City, Albay",
+      "date": "Feb 2024 \u2013 May 2024",
+      "bullets": [
+        "Supported project management for startup BiNNO \u2014 coordinating timelines, tasks, and deliverables.",
+        "Developed and improved the startup's landing page and UI using React.js and Tailwind CSS."
+      ]
+    }
+  ],
+  "contact": {
+    "email": "cordovarossmarco@gmail.com",
+    "phone": "+63 960 595 5883",
+    "linkedin": "http://www.linkedin.com/in/ross-marco-cordova-6b219a325",
+    "facebook": "https://web.facebook.com/ross.cordova.12",
+    "instagram": "https://www.instagram.com/rosscordovs/"
+  }
+}
