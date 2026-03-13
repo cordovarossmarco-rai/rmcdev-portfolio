@@ -1,0 +1,28 @@
+{
+  "items": [
+    {
+      "name": "Introduction Video \u2014 Pageantry",
+      "tag": "Facebook \u00b7 Brand Video",
+      "note": "Client introduction & pageantry showcase",
+      "thumb": "",
+      "video_platform": "facebook",
+      "video_url": "https://www.facebook.com/share/r/1B84dTK8X7/"
+    },
+    {
+      "name": "Introduction Video \u2014 Pageantry 2",
+      "tag": "Facebook \u00b7 Brand Video",
+      "note": "Pageantry campaign video",
+      "thumb": "",
+      "video_platform": "facebook",
+      "video_url": "https://www.facebook.com/share/r/1DXRi7RNGQ/"
+    },
+    {
+      "name": "Springfield Fiberglass Pools",
+      "tag": "Brand Video \u00b7 Home Services",
+      "note": "Brand story & service showcase",
+      "thumb": "https://static.wixstatic.com/media/ccbd72_75bcbe19040f4544b3caf335431f6648~mv2.png",
+      "video_platform": "link",
+      "video_url": "https://www.springfieldfiberglass-pools.com/"
+    }
+  ]
+}
