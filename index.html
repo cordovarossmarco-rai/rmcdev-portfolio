@@ -688,13 +688,18 @@ loadJ('data/videos.json',function(d){
   var list=document.getElementById('vlist'),h='';
   d.items.forEach(function(v){
     var th=v.thumb?'<img src="'+v.thumb+'" alt="'+v.name+'" loading="lazy">':'<div class="vph">&#9654;</div>';
-    h+='<div class="vc" onclick="openVid(''+v.video_url+'',''+v.video_platform+'')">'
-        +'<div class="vthumb">'+th+'</div>'
-        +'<div class="vbody"><div class="vtag">'+v.tag+'</div><div class="vname">'+v.name+'</div><div class="vnote">'+v.note+'</div></div>'
-        +'<div class="vico">&#9654;</div>'
-      +'</div>';
+    var vc=document.createElement('div');
+    vc.className='vc';
+    vc.innerHTML='<div class="vthumb">'+th+'</div>'
+      +'<div class="vbody"><div class="vtag">'+v.tag+'</div><div class="vname">'+v.name+'</div><div class="vnote">'+v.note+'</div></div>'
+      +'<div class="vico">&#9654;</div>';
+    vc.dataset.url=v.video_url;
+    vc.dataset.plat=v.video_platform;
+    vc.addEventListener('click',function(){openVid(this.dataset.url,this.dataset.plat);});
+    hov(vc);
+    list.appendChild(vc);
   });
-  list.innerHTML=h;list.querySelectorAll('.vc').forEach(hov);
+  // (items appended directly above)
 });
 
 // EMAIL
