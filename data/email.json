@@ -1,21 +1,13 @@
 {
   "items": [
     {
-      "name": "Campaign Design #1",
-      "tag": "Klaviyo \u00b7 Automation",
+      "name": "Email Campaign Showcase",
+      "tag": "Klaviyo \u00b7 Mailchimp \u00b7 Automation",
       "img": "",
+      "iframe": "https://claude.site/public/artifacts/4f9322f6-f2bc-4022-afd2-b313a3548ad2/embed",
       "tools": [
         "Klaviyo",
         "Mailchimp"
-      ]
-    },
-    {
-      "name": "Campaign Design #2",
-      "tag": "Mailchimp \u00b7 Campaign",
-      "img": "",
-      "tools": [
-        "Mailchimp",
-        "Klaviyo"
       ]
     }
   ]
