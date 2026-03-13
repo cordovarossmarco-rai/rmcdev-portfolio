@@ -15,7 +15,7 @@ collections:
         label: "🏠 Hero Section"
         file: "data/hero.json"
         fields:
-          - { label: "Status Badge (e.g. Available for new projects)", name: "status_badge", widget: "string" }
+          - { label: "Status Badge", name: "status_badge", widget: "string" }
           - { label: "Your Full Name", name: "name", widget: "string" }
           - { label: "Hero Description", name: "description", widget: "text" }
           - { label: "Resume URL", name: "resume_url", widget: "string" }
@@ -29,8 +29,8 @@ collections:
             widget: "list"
             fields:
               - { label: "Number", name: "number", widget: "number" }
-              - { label: "Suffix (e.g. + or %)", name: "suffix", widget: "string" }
-              - { label: "Label (use \\n for line break)", name: "label", widget: "string" }
+              - { label: "Suffix (+ or %)", name: "suffix", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
               - { label: "Accent Color", name: "accent", widget: "select", options: ["green", "gold"] }
 
       - name: "contact"
@@ -43,61 +43,21 @@ collections:
           - { label: "Facebook URL", name: "facebook", widget: "string" }
           - { label: "Instagram URL", name: "instagram", widget: "string" }
 
-  - name: "projects"
-    label: "🌐 CMS Projects"
+  - name: "cms_projects"
+    label: "🌐 CMS Projects Showcase"
     files:
-
-      - name: "wix"
-        label: "Wix Projects"
-        file: "data/projects-wix.json"
+      - name: "projects"
+        label: "All Projects"
+        file: "data/projects.json"
         fields:
           - label: "Projects"
             name: "items"
             widget: "list"
+            summary: "{{fields.name}}"
             fields:
               - { label: "Site Name", name: "name", widget: "string" }
               - { label: "Live URL", name: "url", widget: "string" }
-              - { label: "Tag (e.g. Wix · Healthcare)", name: "tag", widget: "string" }
-              - { label: "Thumbnail Image", name: "img", widget: "image", required: false }
-
-      - name: "webflow"
-        label: "Webflow Projects"
-        file: "data/projects-webflow.json"
-        fields:
-          - label: "Projects"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: "Site Name", name: "name", widget: "string" }
-              - { label: "Live URL", name: "url", widget: "string" }
-              - { label: "Tag (e.g. Webflow · Corporate)", name: "tag", widget: "string" }
-              - { label: "Thumbnail Image", name: "img", widget: "image", required: false }
-
-      - name: "shopify"
-        label: "Shopify Projects"
-        file: "data/projects-shopify.json"
-        fields:
-          - label: "Projects"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: "Site Name", name: "name", widget: "string" }
-              - { label: "Live URL", name: "url", widget: "string" }
-              - { label: "Tag (e.g. Shopify · eCommerce)", name: "tag", widget: "string" }
-              - { label: "Thumbnail Image", name: "img", widget: "image", required: false }
-
-      - name: "duda"
-        label: "Duda Projects"
-        file: "data/projects-duda.json"
-        fields:
-          - label: "Projects"
-            name: "items"
-            widget: "list"
-            fields:
-              - { label: "Site Name", name: "name", widget: "string" }
-              - { label: "Live URL", name: "url", widget: "string" }
-              - { label: "Tag (e.g. Duda · Home Services)", name: "tag", widget: "string" }
-              - { label: "Thumbnail Image", name: "img", widget: "image", required: false }
+              - { label: "Screenshot Image (upload to /images folder)", name: "img", widget: "image", required: false }
 
   - name: "seo"
     label: "📈 SEO Before/After"
@@ -111,7 +71,7 @@ collections:
             widget: "list"
             fields:
               - { label: "Site Name", name: "site", widget: "string" }
-              - { label: "Industry & Platform (e.g. Legal · Wix)", name: "industry", widget: "string" }
+              - { label: "Industry & Platform", name: "industry", widget: "string" }
               - { label: "Score BEFORE (%)", name: "before", widget: "number" }
               - { label: "Score AFTER (%)", name: "after", widget: "number" }
 
@@ -127,7 +87,7 @@ collections:
             widget: "list"
             fields:
               - { label: "Project Name", name: "name", widget: "string" }
-              - { label: "Tag (e.g. Instagram Reels · eCommerce)", name: "tag", widget: "string" }
+              - { label: "Tag", name: "tag", widget: "string" }
               - { label: "Short Note", name: "note", widget: "string" }
               - { label: "Thumbnail Image", name: "thumb", widget: "image", required: false }
               - label: "Video Platform"
@@ -137,8 +97,8 @@ collections:
                   - { label: "YouTube", value: "youtube" }
                   - { label: "Facebook", value: "facebook" }
                   - { label: "TikTok", value: "tiktok" }
-                  - { label: "Direct Link (no embed)", value: "link" }
-              - { label: "Video URL (full URL from YouTube / Facebook / TikTok)", name: "video_url", widget: "string" }
+                  - { label: "Direct Link", value: "link" }
+              - { label: "Video URL", name: "video_url", widget: "string" }
 
   - name: "email"
     label: "📧 Email Campaigns"
@@ -152,8 +112,9 @@ collections:
             widget: "list"
             fields:
               - { label: "Campaign Name", name: "name", widget: "string" }
-              - { label: "Tag (e.g. Klaviyo · Automation)", name: "tag", widget: "string" }
-              - { label: "Screenshot Image", name: "img", widget: "image", required: false }
+              - { label: "Tag", name: "tag", widget: "string" }
+              - { label: "Embed iframe URL (optional)", name: "iframe", widget: "string", required: false }
+              - { label: "Screenshot Image (optional)", name: "img", widget: "image", required: false }
               - label: "Tools Used"
                 name: "tools"
                 widget: "list"
@@ -170,7 +131,7 @@ collections:
             name: "items"
             widget: "list"
             fields:
-              - { label: "Number (e.g. 01)", name: "num", widget: "string" }
+              - { label: "Number (01, 02...)", name: "num", widget: "string" }
               - { label: "Job Title", name: "job", widget: "string" }
               - { label: "Company", name: "company", widget: "string" }
               - { label: "Location", name: "location", widget: "string" }
