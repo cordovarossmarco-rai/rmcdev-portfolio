@@ -95,8 +95,8 @@ body.hov #cur{width:13px;height:13px}body.hov #cur-ring{width:50px;height:50px;b
 
 /* Experience - job title brighter */
 .exp-job{font-family:var(--fd);font-size:clamp(1.1rem,2vw,1.85rem);letter-spacing:.02em;transition:color .2s;color:var(--white)}
-.exp-co{font-size:.7rem;color:#888;text-align:right;line-height:1.5}
-.exp-date{font-size:.62rem;color:#999;background:rgba(255,255,255,.06);padding:5px 11px;border-radius:100px;justify-self:end;white-space:nowrap}
+.exp-co{font-size:.75rem;color:var(--white);text-align:right;line-height:1.5;font-weight:400}
+.exp-date{font-size:.62rem;font-weight:600;color:#050505;background:var(--green);padding:5px 12px;border-radius:100px;justify-self:end;white-space:nowrap;letter-spacing:.04em}
 /* Experience bullets more readable */
 .exp-b{font-size:.82rem;color:#bbb;padding-left:13px;position:relative;line-height:1.8}
 .exp-b strong{color:var(--green);font-weight:400}
@@ -120,6 +120,43 @@ body.hov #cur{width:13px;height:13px}body.hov #cur-ring{width:50px;height:50px;b
 .ct-sub{font-size:.86rem;color:#999;line-height:1.95;margin-bottom:38px}
 .ct-txt{font-size:.83rem;transition:color .2s;color:#ccc}
 .ct-lbl{font-size:.57rem;letter-spacing:.14em;text-transform:uppercase;color:#666;display:block;margin-bottom:1px}
+
+/* ── TECH STACK BADGES ── */
+.tech-stack{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.tech-badge{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:7px 16px;border-radius:100px;transition:transform .2s,box-shadow .2s}
+.tech-badge:hover{transform:translateY(-2px)}
+.tech-badge.wix{background:rgba(0,130,255,.12);border:1px solid rgba(0,130,255,.35);color:#4da8ff}
+.tech-badge.webflow{background:rgba(70,160,255,.1);border:1px solid rgba(70,160,255,.3);color:#4ecdc4}
+.tech-badge.shopify{background:rgba(150,191,71,.1);border:1px solid rgba(150,191,71,.3);color:#96bf47}
+.tech-badge.duda{background:rgba(255,100,50,.1);border:1px solid rgba(255,100,50,.3);color:#ff7849}
+.tech-badge.neutral{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#aaa}
+
+/* ── SHOWCASE CAROUSEL ── */
+.svc-col{display:flex;flex-direction:column}
+.showcase-wrap{position:relative;overflow:hidden;border-radius:16px;border:1px solid var(--border)}
+.showcase-track{display:flex;gap:0;will-change:transform}
+.sc-card{flex:0 0 280px;height:200px;position:relative;overflow:hidden;border-right:1px solid var(--border);cursor:none;transition:flex-basis .4s var(--eo)}
+.sc-card:hover{flex-basis:340px}
+.sc-card:last-child{border-right:none}
+.sc-card img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s var(--eo);filter:brightness(.85) saturate(.9)}
+.sc-card:hover img{transform:scale(1.06);filter:brightness(1) saturate(1)}
+.sc-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,5,.9) 0%,rgba(5,5,5,.2) 50%,transparent 100%);opacity:0;transition:opacity .35s}
+.sc-card:hover .sc-card-overlay{opacity:1}
+.sc-card-info{position:absolute;bottom:0;left:0;right:0;padding:14px;transform:translateY(8px);opacity:0;transition:all .35s var(--eo)}
+.sc-card:hover .sc-card-info{transform:translateY(0);opacity:1}
+.sc-card-name{font-family:var(--fd);font-size:1rem;letter-spacing:.04em;color:var(--white);margin-bottom:2px}
+.sc-card-url{font-size:.58rem;color:rgba(184,255,87,.7);letter-spacing:.06em}
+.sc-coming{flex:0 0 280px;height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,rgba(184,255,87,.03),rgba(255,209,102,.03));border-left:1px solid var(--border)}
+.sc-coming-num{font-family:var(--fd);font-size:2.5rem;color:var(--green);line-height:1}
+.sc-coming-txt{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);text-align:center;line-height:1.6}
+.showcase-scroll-hint{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:10px;text-align:right;display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.ssh-line{width:24px;height:1px;background:var(--muted)}
+
+/* ── EMAIL FULL CARD ── */
+.em-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.em-card-full{max-width:700px}
+.em-iframe-wrap{width:100%;background:var(--bg4);border-radius:12px 12px 0 0;overflow:hidden;line-height:0}
+.em-iframe-wrap iframe{display:block;width:100%;min-height:520px;border:none}
 
 .glitch{position:relative}
 .glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;font-family:var(--fd);font-size:inherit;line-height:inherit;letter-spacing:inherit}
@@ -236,7 +273,7 @@ body.hov #cur{width:13px;height:13px}body.hov #cur-ring{width:50px;height:50px;b
 .vm-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
 .vm-link{display:flex;align-items:center;justify-content:center;height:300px;flex-direction:column;gap:16px}
 .vm-link a{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#050505;font-family:var(--fb);font-size:.9rem;font-weight:500;padding:14px 28px;border-radius:100px}
-.em-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.em-grid{display:grid;grid-template-columns:1fr;gap:12px;max-width:700px}
 .em-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .4s var(--eo),border-color .3s,box-shadow .35s;cursor:none}
 .em-card:hover{transform:translateY(-7px);border-color:rgba(255,209,102,.22);box-shadow:0 18px 44px rgba(0,0,0,.55)}
 .em-img{height:200px;overflow:hidden;background:var(--bg4);display:flex;align-items:center;justify-content:center}
@@ -369,27 +406,24 @@ body.hov #cur{width:13px;height:13px}body.hov #cur-ring{width:50px;height:50px;b
       <p class="svc-hdr-note rv" style="transition-delay:.15s">End-to-end digital work &mdash; websites, SEO, design, video, and email. Everything under one roof.</p>
     </div>
     <div class="svc-block">
-      <div class="svc-row">
-        <div class="svc-info rv-l">
+      <div class="svc-col">
+        <div class="svc-info rv" style="max-width:680px;margin-bottom:40px">
           <div class="svc-num">01</div><div class="eyebrow">CMS Development</div>
           <h3 class="svc-ttl">Building Sites<br>That Perform</h3>
           <p class="svc-p">Specialized in <strong>Wix, Webflow, Shopify &amp; Duda</strong> &mdash; fast, responsive, SEO-ready websites for US businesses.</p>
-          <div class="svc-tags"><span class="tag">Wix / Velo</span><span class="tag">Webflow</span><span class="tag">Shopify</span><span class="tag">Duda</span><span class="tag">WordPress</span><span class="tag">HTML / CSS / JS</span></div>
-          <div class="svc-pill green"><div class="pill-n green">70+</div><div class="pill-t">Websites delivered<br>for US clients</div></div>
-        </div>
-        <div class="svc-content rv-r" style="transition-delay:.1s">
-          <div class="plat-tabs">
-            <button class="plat-tab active" onclick="switchTab(this,'wix')">Wix</button>
-            <button class="plat-tab" onclick="switchTab(this,'webflow')">Webflow</button>
-            <button class="plat-tab" onclick="switchTab(this,'shopify')">Shopify</button>
-            <button class="plat-tab" onclick="switchTab(this,'duda')">Duda</button>
+          <div class="tech-stack rv" style="transition-delay:.1s">
+            <span class="tech-badge wix">Wix / Velo</span>
+            <span class="tech-badge webflow">Webflow</span>
+            <span class="tech-badge shopify">Shopify</span>
+            <span class="tech-badge duda">Duda</span>
+            <span class="tech-badge neutral">WordPress</span>
+            <span class="tech-badge neutral">HTML / CSS / JS</span>
           </div>
-          <div class="proj-note">Showing a selection of projects &mdash; <strong>70+ total delivered</strong> across all platforms.</div>
-          <div id="tab-wix" class="plat-panel active"></div>
-          <div id="tab-webflow" class="plat-panel"></div>
-          <div id="tab-shopify" class="plat-panel"></div>
-          <div id="tab-duda" class="plat-panel"></div>
         </div>
+        <div class="showcase-wrap rv" style="transition-delay:.15s;overflow-x:auto;-webkit-overflow-scrolling:touch">
+          <div class="showcase-track" id="showcase-track"></div>
+        </div>
+        <div class="showcase-scroll-hint rv" style="transition-delay:.2s"><span class="ssh-line"></span> Scroll down to explore all projects</div>
       </div>
     </div>
     <div class="svc-block">
@@ -674,6 +708,42 @@ loadJSON('data/seo.json',function(d){
   wrap.querySelectorAll('.seo-bar-after').forEach(function(el){bobs.observe(el);});
 });
 
+// ── SHOWCASE CAROUSEL ──
+loadJSON('data/projects.json',function(d){
+  var track=document.getElementById('showcase-track');
+  if(!track)return;
+  var html='';
+  d.items.forEach(function(p){
+    var imgHtml=p.img
+      ?'<img src="'+p.img+'" alt="'+p.name+'" loading="lazy">'
+      :'<div style="width:100%;height:100%;background:var(--bg4);display:flex;align-items:center;justify-content:center"><span style="font-family:var(--fd);font-size:.9rem;color:var(--muted);letter-spacing:.06em">'+p.name+'</span></div>';
+    var domainRaw=p.url.replace(/https?:\/\//,'').replace(/\/.*/,'');
+    html+='<a href="'+p.url+'" rel="nofollow" target="_blank" class="sc-card">'+imgHtml+'<div class="sc-card-overlay"></div><div class="sc-card-info"><div class="sc-card-name">'+p.name+'</div><div class="sc-card-url">'+domainRaw+'</div></div></a>';
+  });
+  // Add "60+ coming soon" card
+  html+='<div class="sc-coming"><div class="sc-coming-num">60+</div><div class="sc-coming-txt">More project<br>showcases<br>coming soon</div></div>';
+  track.innerHTML=html;
+  track.querySelectorAll('.sc-card').forEach(addHov);
+
+  // Scroll-driven animation
+  var wrap=track.parentElement;
+  var isDown=false,startX,scrollLeft;
+  wrap.addEventListener('mousedown',function(e){isDown=true;startX=e.pageX-wrap.offsetLeft;scrollLeft=wrap.scrollLeft;});
+  wrap.addEventListener('mouseleave',function(){isDown=false;});
+  wrap.addEventListener('mouseup',function(){isDown=false;});
+  wrap.addEventListener('mousemove',function(e){if(!isDown)return;e.preventDefault();var x=e.pageX-wrap.offsetLeft;var walk=(x-startX)*1.5;wrap.scrollLeft=scrollLeft-walk;});
+
+  // Scroll-spy: move carousel as page scrolls
+  var svcSection=document.getElementById('services');
+  window.addEventListener('scroll',function(){
+    if(!svcSection)return;
+    var rect=svcSection.getBoundingClientRect();
+    var progress=Math.max(0,Math.min(1,(-rect.top)/(rect.height*.6)));
+    var maxScroll=track.scrollWidth-wrap.clientWidth;
+    wrap.scrollLeft=progress*maxScroll;
+  },{passive:true});
+});
+
 // Graphic design — reuse wix data for mosaic
 loadJSON('data/projects-wix.json',function(d){
   var mosaic=document.getElementById('design-mosaic'),html='';
@@ -702,11 +772,15 @@ loadJSON('data/videos.json',function(d){
 loadJSON('data/email.json',function(d){
   var grid=document.getElementById('em-grid'),html='';
   d.items.forEach(function(e){
-    var imgHtml=e.img
-      ?'<img src="'+e.img+'" alt="'+e.name+'" loading="lazy">'
-      :'<div class="em-ph"><div class="em-ph-icon">&#9993;</div><div class="em-ph-lbl">'+e.name+'</div><div class="em-ph-sub">Screenshot coming soon</div></div>';
     var tools=(e.tools||[]).map(function(t){return '<span class="em-tool">'+t+'</span>';}).join('');
-    html+='<div class="em-card"><div class="em-img">'+imgHtml+'</div><div class="em-body"><div class="em-tag">'+e.tag+'</div><div class="em-name">'+e.name+'</div><div class="em-tools">'+tools+'</div></div></div>';
+    if(e.iframe){
+      html+='<div class="em-card em-card-full"><div class="em-iframe-wrap"><iframe src="'+e.iframe+'" title="Email Campaign Design" width="100%" height="520" frameborder="0" allow="clipboard-write" allowfullscreen loading="lazy"></iframe></div><div class="em-body"><div class="em-tag">'+e.tag+'</div><div class="em-name">'+e.name+'</div><div class="em-tools">'+tools+'</div></div></div>';
+    } else {
+      var imgHtml=e.img
+        ?'<img src="'+e.img+'" alt="'+e.name+'" loading="lazy">'
+        :'<div class="em-ph"><div class="em-ph-icon">&#9993;</div><div class="em-ph-lbl">'+e.name+'</div><div class="em-ph-sub">Screenshot coming soon</div></div>';
+      html+='<div class="em-card"><div class="em-img">'+imgHtml+'</div><div class="em-body"><div class="em-tag">'+e.tag+'</div><div class="em-name">'+e.name+'</div><div class="em-tools">'+tools+'</div></div></div>';
+    }
   });
   grid.innerHTML=html;
   grid.querySelectorAll('.em-card').forEach(addHov);
