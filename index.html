@@ -23,9 +23,18 @@
     --max: 1200px; --ease: cubic-bezier(0.16, 1, 0.3, 1); --eo: cubic-bezier(0.19, 1, 0.22, 1); --spring: cubic-bezier(0.34, 1.4, 0.64, 1);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; background: var(--bg); }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  body { background: transparent; color: var(--text); font-family: var(--sans); line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  /* slow drifting monochrome aura so the light page feels alive (shows through the white sections) */
+  .aura { position: fixed; inset: -18%; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(40% 44% at 22% 20%, rgba(18,18,30,0.09), transparent 66%),
+      radial-gradient(36% 42% at 82% 54%, rgba(18,18,30,0.075), transparent 64%),
+      radial-gradient(34% 40% at 54% 98%, rgba(18,18,30,0.06), transparent 62%);
+    animation: auraDrift 28s ease-in-out infinite alternate; will-change: transform; }
+  @keyframes auraDrift { from { transform: translate3d(-2%, 1%, 0) scale(1); } to { transform: translate3d(3%, -2%, 0) scale(1.1); } }
+  @media (prefers-reduced-motion: reduce) { .aura { animation: none; } }
   a { color: inherit; text-decoration: none; }
   img { display: block; max-width: 100%; }
   ::selection { background: #14141a; color: #fff; }
@@ -158,8 +167,11 @@
   /* ---------- systems ---------- */
   .ai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   @media (max-width: 760px) { .ai-grid { grid-template-columns: 1fr; } }
-  .ai-card { border: 1px solid var(--line); border-radius: 22px; padding: 34px 32px 36px; background: var(--surface); transition: border-color .35s var(--ease), transform .5s var(--spring), box-shadow .5s var(--ease); }
-  .ai-card:hover { border-color: var(--line-2); transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(17,17,19,0.16); }
+  .ai-card { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; padding: 34px 32px 36px; background: var(--surface); transition: border-color .35s var(--ease), transform .5s var(--spring), box-shadow .5s var(--ease); }
+  .ai-card:hover { border-color: var(--line-2); transform: translateY(-6px); box-shadow: 0 30px 60px -30px rgba(17,17,19,0.22); }
+  .ai-card > *:not(.ai-ghost) { position: relative; z-index: 1; }
+  .ai-ghost { position: absolute; right: 14px; bottom: -26px; z-index: 0; font-size: 168px; font-weight: 700; line-height: 1; letter-spacing: -0.06em; color: rgba(18,18,28,0.04); pointer-events: none; user-select: none; }
+  .ai-card:hover .ai-ghost { color: rgba(18,18,28,0.06); }
   .ai-card .num { font-size: 13px; color: var(--text-3); font-weight: 600; letter-spacing: 0.04em; }
   .ai-card h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.025em; color: var(--text); margin-top: 14px; }
   .ai-card p { color: var(--text-2); font-size: 15px; margin-top: 10px; line-height: 1.6; }
@@ -225,6 +237,9 @@
   .site-card.soon:hover { transform: none; box-shadow: none; border-color: var(--line); }
   .site-card.soon .soon-inner { text-align: center; color: var(--text-3); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.85; }
 
+  /* resting depth so cards lift off the moving background */
+  .work-card:not(.placeholder), .ai-card, .res, .site-card:not(.soon), .allsites { box-shadow: 0 1px 2px rgba(17,17,19,0.03), 0 18px 42px -26px rgba(17,17,19,0.14); }
+
   /* ---------- reveals ---------- */
   .js .rv { opacity: 0; transform: translateY(30px); filter: blur(6px); transition: opacity .9s var(--ease), transform .9s var(--ease), filter .9s var(--ease); transition-delay: var(--d, 0s); }
   .js .rv.in { opacity: 1; transform: none; filter: none; }
@@ -244,6 +259,7 @@
 </style>
 </head>
 <body id="top">
+  <div class="aura" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
     <div class="nav-inner">
@@ -290,7 +306,7 @@
   <div class="wrap">
     <div class="stats-grid">
       <div class="stat rv"><div class="n" data-count="70" data-suffix="+">0</div><div class="lbl">Sites shipped</div></div>
-      <div class="stat rv"><div class="n" data-count="29">0</div><div class="lbl">Live client builds</div></div>
+      <div class="stat rv"><div class="n" data-count="25">0</div><div class="lbl">Live client builds</div></div>
       <div class="stat rv"><div class="n" data-count="4">0</div><div class="lbl">AI systems in production</div></div>
       <div class="stat rv"><div class="n">US &middot; UK</div><div class="lbl">Clients served</div></div>
     </div>
@@ -338,21 +354,25 @@
       </div>
       <div class="ai-grid">
         <div class="ai-card rv">
+          <span class="ai-ghost" aria-hidden="true">01</span>
           <div class="num">01</div><h3>Voice Agents</h3>
           <p>Production AI receptionist and outbound agents. Answer calls, book appointments, qualify leads, and remember customers across calls and channels. Running around the clock for client operations.</p>
           <div class="stack"><span class="chip">LLM</span><span class="chip">Realtime voice</span><span class="chip">Calendar / CRM</span></div>
         </div>
         <div class="ai-card rv">
+          <span class="ai-ghost" aria-hidden="true">02</span>
           <div class="num">02</div><h3>Meeting Intelligence Platform</h3>
           <p>Turns live conversations into tracked, human-verified action items. Live transcription, context-grounded generation, and prompt-cached LLM pipelines under the hood.</p>
           <div class="stack"><span class="chip">Transcription</span><span class="chip">Prompt caching</span><span class="chip">Pipelines</span></div>
         </div>
         <div class="ai-card rv">
+          <span class="ai-ghost" aria-hidden="true">03</span>
           <div class="num">03</div><h3>AEO Analysis Engine</h3>
           <p>A tool that scores pages for AI-citation readiness across every answer engine: information gain, entity strength, crawlability, and measured share of voice. Built and tested in TypeScript.</p>
           <div class="stack"><span class="chip">TypeScript</span><span class="chip">AEO / SEO</span><span class="chip">Tested</span></div>
         </div>
         <div class="ai-card rv">
+          <span class="ai-ghost" aria-hidden="true">04</span>
           <div class="num">04</div><h3>AP / AR Automation</h3>
           <p>A multi-tenant accounts-payable and receivable system built on n8n and Claude. Invoices are read and GL-coded against per-vendor memory, a human approves in Slack or email, and the bill is filed in the client's accounting system. Bank-change detection, an exception queue, and an append-only audit trail keep it safe; a human always approves, and it never moves money.</p>
           <div class="stack"><span class="chip">n8n</span><span class="chip">Claude</span><span class="chip">Human-in-the-loop</span></div>
@@ -369,9 +389,9 @@
         <p>Technical SEO audit scores on live client work. The same discipline now points at AI answer engines, which is AEO.</p>
       </div>
       <div class="res-grid">
-        <div class="res rv"><div class="site">East Boston Law</div><div class="ind">Legal &middot; Wix</div><div class="ba"><span class="b">54</span><span class="to">to</span><span class="a">85</span></div><div class="cap">SEO audit score</div></div>
-        <div class="res rv"><div class="site">Guard's Up Counseling</div><div class="ind">Healthcare &middot; Wix</div><div class="ba"><span class="b">57</span><span class="to">to</span><span class="a">85</span></div><div class="cap">SEO audit score</div></div>
-        <div class="res rv"><div class="site">Crush Planners</div><div class="ind">eCommerce &middot; Shopify</div><div class="ba"><span class="b">59</span><span class="to">to</span><span class="a">85</span></div><div class="cap">SEO audit score</div></div>
+        <div class="res rv"><div class="site">East Boston Law</div><div class="ind">Legal &middot; Wix</div><div class="ba"><span class="b" data-count="54">0</span><span class="to">to</span><span class="a" data-count="85">0</span></div><div class="cap">SEO audit score</div></div>
+        <div class="res rv"><div class="site">Guard's Up Counseling</div><div class="ind">Healthcare &middot; Wix</div><div class="ba"><span class="b" data-count="57">0</span><span class="to">to</span><span class="a" data-count="85">0</span></div><div class="cap">SEO audit score</div></div>
+        <div class="res rv"><div class="site">Crush Planners</div><div class="ind">eCommerce &middot; Shopify</div><div class="ba"><span class="b" data-count="59">0</span><span class="to">to</span><span class="a" data-count="85">0</span></div><div class="cap">SEO audit score</div></div>
       </div>
       <p class="res-note rv">Now focused on <b>answer-engine optimization</b>: getting businesses cited inside AI answers, not just ranked in classic search.</p>
     </div>
@@ -396,7 +416,7 @@
         <div>
           <h3>Head of Web Design</h3>
           <div class="co">Tradepro360 &middot; UK voice-AI company &middot; Remote</div>
-          <p>Established the web team's design systems, SOPs, and scalable Webflow architecture with Client-First naming and Relume components. Designed high-fidelity mockups and trained developers on the standards.</p>
+          <p>Established the web team's design systems, SOPs, and scalable Webflow architecture with Client-First naming and Relume components. Designed high-fidelity mockups, automated internal workflows to speed the team up, and trained developers on the standards.</p>
         </div>
       </div>
     </div>
@@ -455,16 +475,13 @@
     });
 
     var SITES = [
-      ["Dembell", "https://www.dembell.com/"],
-      ["Hornblasters", "https://hornblasters.com/pages/spare-tire-delete-bracket-selection"],
-      ["Pacific Artists Studio", "https://www.pacificartistsstudio.com/"],
+      ["Hornblasters", "https://hornblasters.com/pages/goliath-mount"],
       ["Buy Attaché", "https://buyattache.com/"],
-      ["Eternal Perfume Oils", "https://eternalperfumeoils.com/"],
-      ["Revive & Align Pilates", "https://www.reviveandalignpilates.com/"],
       ["Crush Planners", "https://crushplanners.com/collections/all"],
-      ["Fix That Mac", "https://www.fixthatmac.net/"],
-      ["Blueline Plumbing", "https://blueline-plumbing.webflow.io/"],
-      ["Law Office of Joshua Chung", "https://www.lawofficeofjoshuachung.com/"],
+      ["Revive & Align Pilates", "https://www.reviveandalignpilates.com/"],
+      ["Inglesrud Corporation", "https://www.inglesrudcorporation.com/"],
+      ["Pacific Artists Studio", "https://www.pacificartistsstudio.com/"],
+      ["Eternal Perfume Oils", "https://eternalperfumeoils.com/"],
       ["Kangen Service Center", "https://www.kangenservice-center.com/"],
       ["Dial Septic Tank Services", "https://www.dialseptic.com/"],
       ["King City Shopping Center", "https://www.kingscitymerchants.com/"],
@@ -480,10 +497,9 @@
       ["BLBC NV", "https://blbcnv.com/"],
       ["New Providence Home Health Care", "https://www.newprovidencehomehealthcare.com/"],
       ["Eternally Rich Assisted Living", "https://www.eternallyrichllc.com/"],
-      ["Inglesrud Corporation", "https://www.inglesrudcorporation.com/"],
-      ["East Boston Law", "https://www.eastbostonlaw.com/"],
       ["Guard's Up Counseling", "https://www.guardsupcounseling.com/"],
-      ["Christian Golfers", "https://www.christiangolfers.org/"]
+      ["Christian Golfers", "https://www.christiangolfers.org/"],
+      ["Dembell", "https://www.dembell.com/"]
     ];
     var grid = document.getElementById("siteGrid"), built = false;
     function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
