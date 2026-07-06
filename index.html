@@ -42,6 +42,12 @@
   .nav-links a:hover { color: var(--text); }
   .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -5px; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .32s var(--ease); }
   .nav-links a:hover::after { transform: scaleX(1); }
+  /* adaptive: white over the dark hero, dark once scrolled onto the light body */
+  header.nav:not(.solid) .brand { color: #fff; }
+  header.nav:not(.solid) .nav-links a { color: rgba(255,255,255,0.72); }
+  header.nav:not(.solid) .nav-links a:hover { color: #fff; }
+  header.nav:not(.solid) .nav-cta { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.45); }
+  header.nav:not(.solid) .nav-cta:hover { background: rgba(255,255,255,0.12); }
   @media (max-width: 820px) { .nav-links { display: none; } }
 
   /* ---------- pill buttons ---------- */
@@ -55,26 +61,30 @@
   .btn:hover .arr { transform: translateX(4px); }
   .nav-cta { font-size: 14px; padding: 11px 20px; }
 
-  /* ---------- hero ---------- */
-  .hero { padding: 116px 0 clamp(40px, 6vw, 72px); }
-  .hero-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 26px; }
-  .hero-avail { display: inline-flex; }
-  .hero-photo-wrap { position: relative; border-radius: 26px; overflow: hidden; background: var(--bg-2); aspect-ratio: 16 / 10; }
-  .hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: 60% 22%; filter: grayscale(1) contrast(1.02); transform: scale(1.02); animation: heroZoom 6s var(--eo) forwards; will-change: transform; }
+  /* ---------- hero (dark: portrait bleeds into black, Luzia layout inverted) ---------- */
+  .hero { position: relative; min-height: 94vh; min-height: 94dvh; background: #08080a; overflow: hidden; display: flex; }
+  .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 20%; filter: grayscale(1) contrast(1.04) brightness(0.97); transform: scale(1.05); animation: heroZoom 7s var(--eo) forwards; will-change: transform; }
   @keyframes heroZoom { to { transform: scale(1); } }
-  .hero-photo-wrap::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(17,17,19,0.06); border-radius: 26px; pointer-events: none; }
-  .hero-bottom { display: grid; grid-template-columns: 1.35fr 1fr; gap: 40px; align-items: end; margin-top: 34px; }
-  .hero-h1 { font-size: clamp(2.3rem, 5vw, 4.1rem); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600; color: var(--text); max-width: 15ch; }
-  .hero-h1 b { font-weight: 600; color: var(--text-3); }
-  .hero-right { }
-  .hero-desc { font-size: clamp(15px, 1.6vw, 17.5px); color: var(--text-2); line-height: 1.6; max-width: 42ch; }
-  .hero-desc b { color: var(--text); font-weight: 600; }
+  .hero-scrim { position: absolute; inset: 0; pointer-events: none; background:
+      linear-gradient(to top, rgba(8,8,10,0.95) 0%, rgba(8,8,10,0.42) 24%, rgba(8,8,10,0) 50%),
+      linear-gradient(to bottom, rgba(8,8,10,0.74) 0%, rgba(8,8,10,0) 20%),
+      linear-gradient(100deg, rgba(8,8,10,0.62) 0%, rgba(8,8,10,0) 44%); }
+  .hero-inner { position: relative; z-index: 2; width: 100%; max-width: var(--max); margin: 0 auto; padding: 104px 28px clamp(46px, 6vw, 80px); display: flex; flex-direction: column; }
+  .hero-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .hero-top .eyebrow { color: rgba(255,255,255,0.55); }
+  .hero-bottom { margin-top: auto; padding-top: 220px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: end; }
+  .hero-h1 { font-size: clamp(2.3rem, 5vw, 4.2rem); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600; color: #fbfbfc; max-width: 15ch; }
+  .hero-h1 b { font-weight: 600; color: rgba(255,255,255,0.42); }
+  .hero-desc { font-size: clamp(15px, 1.6vw, 17.5px); color: rgba(255,255,255,0.72); line-height: 1.6; max-width: 42ch; }
+  .hero-desc b { color: #fff; font-weight: 600; }
   .hero-btns { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-btns .btn-primary { background: #fff; color: #101014; }
+  .hero-btns .btn-ghost { border-color: rgba(255,255,255,0.4); color: #fff; }
+  .hero-btns .btn-ghost:hover { background: rgba(255,255,255,0.1); }
   @media (max-width: 860px) {
-    .hero { padding: 100px 0 40px; }
-    .hero-bottom { grid-template-columns: 1fr; gap: 26px; }
-    .hero-photo-wrap { aspect-ratio: 4 / 5; }
-    .hero-photo { object-position: 62% 20%; }
+    .hero { min-height: 90vh; min-height: 90dvh; }
+    .hero-photo { object-position: 64% 16%; }
+    .hero-bottom { grid-template-columns: 1fr; gap: 22px; padding-top: 130px; }
   }
 
   /* ---------- marquee ---------- */
@@ -234,17 +244,16 @@
   </header>
 
   <section class="hero">
-    <div class="wrap">
+    <img class="hero-photo" src="images/hero.jpg" alt="Ross Marco Cordova" />
+    <div class="hero-scrim"></div>
+    <div class="hero-inner">
       <div class="hero-top">
-        <span class="eyebrow hero-avail">Available for new projects</span>
+        <span class="eyebrow">Available for new projects</span>
         <span class="eyebrow">US &middot; UK clients</span>
       </div>
-      <div class="hero-photo-wrap rv">
-        <img class="hero-photo" src="images/hero.jpg" alt="Ross Marco Cordova" />
-      </div>
       <div class="hero-bottom">
-        <h1 class="hero-h1 rv">Ross Marco Cordova builds AI systems that solve <b>real business bottlenecks.</b></h1>
-        <div class="hero-right rv">
+        <h1 class="hero-h1">Ross Marco Cordova builds AI systems that solve <b>real business bottlenecks.</b></h1>
+        <div class="hero-right">
           <p class="hero-desc">An <b>AI Automation Engineer</b> shipping LLM-powered voice agents, meeting intelligence, and workflow automation, backed by 70+ production web builds.</p>
           <div class="hero-btns">
             <a href="#contact" class="btn btn-primary">Get in touch <span class="arr">&rarr;</span></a>
@@ -500,7 +509,7 @@
     var ticking = false;
     function onScroll() {
       if (ticking) return; ticking = true;
-      requestAnimationFrame(function () { nav.classList.toggle("solid", window.scrollY > 24); ticking = false; });
+      requestAnimationFrame(function () { nav.classList.toggle("solid", window.scrollY > window.innerHeight * 0.8); ticking = false; });
     }
     window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
   </script>
