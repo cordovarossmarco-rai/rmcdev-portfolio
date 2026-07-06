@@ -144,6 +144,10 @@
   .work-card.placeholder { display: grid; place-items: center; min-height: 260px; border-style: dashed; }
   .work-card.placeholder .ph { text-align: center; color: var(--text-3); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.9; }
   @media (max-width: 760px) { .work-row { grid-template-columns: 1fr; } }
+  .work-row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .work-row3 .wc-body h3 { font-size: 20px; }
+  @media (max-width: 920px) { .work-row3 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .work-row3 { grid-template-columns: 1fr; } }
 
   .allsites { margin-top: 24px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 20px; padding: 26px 30px; background: var(--bg-2); cursor: pointer; transition: border-color .3s var(--ease), background .3s, transform .5s var(--spring); text-align: left; font-family: inherit; color: inherit; }
   .allsites:hover { border-color: var(--line-2); background: var(--surface-2); transform: translateY(-4px); }
@@ -217,6 +221,9 @@
   .site-card .sc-body .nm { font-size: 14.5px; font-weight: 600; color: var(--text); }
   .site-card .sc-body .go { font-size: 13px; color: var(--text-3); font-weight: 500; transition: color .2s; }
   .site-card:hover .sc-body .go { color: var(--text); }
+  .site-card.soon { display: grid; place-items: center; min-height: 210px; border-style: dashed; background: transparent; }
+  .site-card.soon:hover { transform: none; box-shadow: none; border-color: var(--line); }
+  .site-card.soon .soon-inner { text-align: center; color: var(--text-3); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.85; }
 
   /* ---------- reveals ---------- */
   .js .rv { opacity: 0; transform: translateY(30px); filter: blur(6px); transition: opacity .9s var(--ease), transform .9s var(--ease), filter .9s var(--ease); transition-delay: var(--d, 0s); }
@@ -295,31 +302,29 @@
         <span class="eyebrow">Selected work</span>
         <h2>Flagship builds and the work behind them.</h2>
       </div>
-      <a class="work-feature rv" href="https://default-ai.agency/" target="_blank" rel="noopener">
-        <div class="shot"><span class="skel">Loading preview</span><img data-shot="https://default-ai.agency/" alt="Default-AI website preview" loading="lazy"></div>
-        <div class="work-body">
-          <div>
+      <div class="work-row3">
+        <a class="work-card rv" href="https://default-ai.agency/" target="_blank" rel="noopener">
+          <div class="shot"><span class="skel">Loading preview</span><img data-shot="https://default-ai.agency/" alt="Default-AI website preview" loading="lazy"></div>
+          <div class="wc-body">
             <div class="tag">AI automation agency &middot; Next.js</div>
             <h3>Default-AI</h3>
-            <p>The agency I founded. Voice agents, meeting intelligence, and custom automation, designed and engineered end to end.</p>
+            <p>The agency I founded. Voice agents, meeting intelligence, and custom automation, end to end.</p>
+            <span class="arrow-link">Visit site <span class="arr">&rarr;</span></span>
           </div>
-          <span class="arrow-link">Visit site <span class="arr">&rarr;</span></span>
-        </div>
-      </a>
-      <div class="work-row">
+        </a>
         <a class="work-card rv" href="https://tradepro360.com/" target="_blank" rel="noopener">
           <div class="shot"><span class="skel">Loading preview</span><img data-shot="https://tradepro360.com/" alt="Tradepro360 website preview" loading="lazy"></div>
           <div class="wc-body">
             <div class="tag">UK voice-AI company &middot; Webflow</div>
             <h3>Tradepro360</h3>
-            <p>Led web design: design systems, scalable Webflow architecture, and the standards the team builds on.</p>
+            <p>Led web design: design systems and scalable Webflow architecture the team builds on.</p>
             <span class="arrow-link">Visit site <span class="arr">&rarr;</span></span>
           </div>
         </a>
-        <div class="work-card placeholder rv"><div class="ph">Third flagship<br>coming soon</div></div>
+        <div class="work-card placeholder rv"><div class="ph">Third flagship<br>uploading soon</div></div>
       </div>
       <button class="allsites rv" id="openSites" type="button">
-        <span class="l"><span class="big">See every website I have built</span><span class="small">18 live client sites across Webflow, Wix, Shopify, and Duda.</span></span>
+        <span class="l"><span class="big">70+ websites built and delivered</span><span class="small">Here are some of the live sites and projects I built.</span></span>
         <span class="r">Open the list <span>&rarr;</span></span>
       </button>
     </div>
@@ -387,7 +392,7 @@
         </div>
       </div>
       <div class="xp-row rv">
-        <div class="when">2026</div>
+        <div class="when">Jan - Feb 2026</div>
         <div>
           <h3>Head of Web Design</h3>
           <div class="co">Tradepro360 &middot; UK voice-AI company &middot; Remote</div>
@@ -416,8 +421,8 @@
   <div class="modal" id="sitesModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="All websites built">
     <div class="modal-bd" data-close></div>
     <button class="modal-close" id="closeSites" type="button">Close (esc)</button>
-    <div class="modal-panel"><div class="modal-wrap">
-      <div class="modal-head"><h2>Websites I have built</h2><p>Live client sites. 18 active builds across Webflow, Wix, Shopify, and Duda.</p></div>
+    <div class="modal-panel" data-lenis-prevent><div class="modal-wrap">
+      <div class="modal-head"><h2>Sites and projects I built</h2><p>70+ websites built and delivered. Here are some of the live ones you can visit.</p></div>
       <div class="site-grid" id="siteGrid"></div>
     </div></div>
   </div>
@@ -467,7 +472,8 @@
       ["Eternally Rich Assisted Living", "https://www.eternallyrichllc.com/"],
       ["Inglesrud Corporation", "https://www.inglesrudcorporation.com/"],
       ["East Boston Law", "https://www.eastbostonlaw.com/"],
-      ["Guard's Up Counseling", "https://www.guardsupcounseling.com/"]
+      ["Guard's Up Counseling", "https://www.guardsupcounseling.com/"],
+      ["Christian Golfers", "https://www.christiangolfers.org/"]
     ];
     var grid = document.getElementById("siteGrid"), built = false;
     function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
@@ -483,6 +489,10 @@
         real.onload = function () { img.src = real.src; img.classList.add("loaded"); var sk = img.previousElementSibling; if (sk) sk.style.display = "none"; };
         real.src = shotUrl(s[1], 700);
       });
+      var soon = document.createElement("div");
+      soon.className = "site-card soon";
+      soon.innerHTML = '<div class="soon-inner">More projects<br>uploading soon</div>';
+      grid.appendChild(soon);
     }
     var modal = document.getElementById("sitesModal");
     function openModal() { buildGrid(); modal.classList.add("open"); modal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; if (lenis) lenis.stop(); }
