@@ -87,8 +87,10 @@
     .hero-blur { backdrop-filter: none; -webkit-backdrop-filter: none; background: linear-gradient(to top, rgba(8,8,10,0.5), transparent); }
   }
   .hero-inner { position: relative; z-index: 2; width: 100%; max-width: var(--max); margin: 0 auto; padding: 104px 28px clamp(46px, 6vw, 80px); display: flex; flex-direction: column; }
-  .hero-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .hero-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px 24px; flex-wrap: wrap; }
   .hero-top .eyebrow { color: rgba(255,255,255,0.55); }
+  .hero-avail { display: flex; flex-direction: column; gap: 6px; }
+  .hero-tz { font-size: 11.5px; letter-spacing: 0.02em; color: rgba(255,255,255,0.42); font-weight: 400; }
   .hero-bottom { margin-top: auto; padding-top: 220px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: end; }
   .hero-h1 { font-size: clamp(2.3rem, 5vw, 4.2rem); line-height: 1.02; letter-spacing: -0.035em; font-weight: 600; color: #fbfbfc; max-width: 15ch; }
   .hero-h1 b { font-weight: 600; color: rgba(255,255,255,0.42); }
@@ -153,10 +155,10 @@
   .work-card.placeholder { display: grid; place-items: center; min-height: 260px; border-style: dashed; }
   .work-card.placeholder .ph { text-align: center; color: var(--text-3); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.9; }
   @media (max-width: 760px) { .work-row { grid-template-columns: 1fr; } }
-  .work-row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  /* auto-fit collapses empty tracks, so the grid adapts to the number of cards
+     (2 fill evenly now; a future third slots in as 3-up) instead of assuming 3. */
+  .work-row3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 24px; }
   .work-row3 .wc-body h3 { font-size: 20px; }
-  @media (max-width: 920px) { .work-row3 { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .work-row3 { grid-template-columns: 1fr; } }
 
   .allsites { margin-top: 24px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 20px; padding: 26px 30px; background: var(--bg-2); cursor: pointer; transition: border-color .3s var(--ease), background .3s, transform .5s var(--spring); text-align: left; font-family: inherit; color: inherit; }
   .allsites:hover { border-color: var(--line-2); background: var(--surface-2); transform: translateY(-4px); }
@@ -175,6 +177,24 @@
   .ai-card .num { font-size: 13px; color: var(--text-3); font-weight: 600; letter-spacing: 0.04em; }
   .ai-card h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.025em; color: var(--text); margin-top: 14px; }
   .ai-card p { color: var(--text-2); font-size: 15px; margin-top: 10px; line-height: 1.6; }
+  .ai-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px 18px; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .ai-stats .as { display: flex; flex-direction: column; }
+  .ai-stats .as .n { font-size: 22px; font-weight: 600; letter-spacing: -0.03em; color: var(--text); font-variant-numeric: tabular-nums; line-height: 1; }
+  .ai-stats .as .lbl { margin-top: 6px; font-size: 11.5px; color: var(--text-2); line-height: 1.35; }
+  @media (max-width: 600px) { .ai-stats { grid-template-columns: repeat(2, 1fr); } }
+  /* optional evidence media slot — a card renders exactly as before if it has none */
+  .ai-evidence { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .ai-evidence figure { margin: 0; flex: 1 1 100%; min-width: 0; }
+  .ai-evidence.multi figure { flex: 1 1 calc(50% - 6px); }
+  .ai-evidence .ev-btn { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface-2); cursor: zoom-in; }
+  .ai-evidence img.ev-media { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; transition: transform .45s var(--ease); }
+  .ai-evidence .ev-btn:hover img.ev-media { transform: scale(1.03); }
+  .ai-evidence audio { width: 100%; margin-top: 2px; }
+  .ai-evidence figcaption { font-size: 11.5px; color: var(--text-3); margin-top: 8px; line-height: 1.4; }
+  .ev-embed { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+  .ev-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .ev-lightbox { display: flex; align-items: center; justify-content: center; min-height: calc(100dvh - 156px); }
+  .ev-lightbox img { max-width: 100%; max-height: calc(100dvh - 156px); width: auto; height: auto; border-radius: 12px; box-shadow: 0 30px 80px -30px rgba(17,17,19,0.4); }
   .ai-card .stack { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
   .ai-card .chip { font-size: 12.5px; font-weight: 500; color: var(--text-2); border: 1px solid var(--line); border-radius: 100px; padding: 5px 12px; }
 
@@ -197,6 +217,7 @@
   .xp-row:last-child { border-bottom: 1px solid var(--line); }
   .xp-row .when { font-size: 14px; color: var(--text-3); font-weight: 500; }
   .xp-row h3 { font-size: 23px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); }
+  .xp-row h3 .xp-note { font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--text-3); white-space: nowrap; }
   .xp-row .co { color: var(--text-2); font-size: 15px; margin-top: 5px; }
   .xp-row p { color: var(--text-2); font-size: 15.5px; margin-top: 16px; max-width: 62ch; }
   @media (max-width: 760px) { .xp-row { grid-template-columns: 1fr; gap: 10px; padding: 30px 0; } }
@@ -280,8 +301,11 @@
     <div class="hero-scrim"></div>
     <div class="hero-inner">
       <div class="hero-top">
-        <span class="eyebrow">Available for new projects</span>
-        <span class="eyebrow">US &middot; UK clients</span>
+        <div class="hero-avail">
+          <span class="eyebrow">Open to contract and full-time remote roles</span>
+          <span class="hero-tz">Philippines (GMT+8) &middot; Overlapping hours with US and UK teams</span>
+        </div>
+        <span class="eyebrow">US/UK hours</span>
       </div>
       <div class="hero-bottom">
         <h1 class="hero-h1">Ross Marco Cordova builds AI systems that solve <b>real business bottlenecks.</b></h1>
@@ -290,6 +314,8 @@
           <div class="hero-btns">
             <a href="#contact" class="btn btn-primary">Get in touch <span class="arr">&rarr;</span></a>
             <a href="#work" class="btn btn-ghost">See selected work</a>
+            <!-- TODO: drop resume.pdf in the site root — link 404s until then -->
+            <a href="/resume.pdf" class="btn btn-ghost" download>Download r&eacute;sum&eacute;</a>
           </div>
         </div>
       </div>
@@ -305,9 +331,9 @@
 
   <div class="wrap">
     <div class="stats-grid">
-      <div class="stat rv"><div class="n" data-count="70" data-suffix="+">0</div><div class="lbl">Sites shipped</div></div>
-      <div class="stat rv"><div class="n" data-count="12" data-suffix="+">0</div><div class="lbl">Industries served</div></div>
-      <div class="stat rv"><div class="n" data-count="4">0</div><div class="lbl">AI systems in production</div></div>
+      <div class="stat rv"><div class="n" data-count="70" data-suffix="+">70+</div><div class="lbl">Sites shipped</div></div>
+      <div class="stat rv"><div class="n" data-count="12" data-suffix="+">12+</div><div class="lbl">Industries served</div></div>
+      <div class="stat rv"><div class="n" data-count="4">4</div><div class="lbl">AI systems in production</div></div>
       <div class="stat rv"><div class="n">US &middot; UK</div><div class="lbl">Clients served</div></div>
     </div>
   </div>
@@ -337,7 +363,6 @@
             <span class="arrow-link">Visit site <span class="arr">&rarr;</span></span>
           </div>
         </a>
-        <div class="work-card placeholder rv"><div class="ph">Third flagship<br>uploading soon</div></div>
       </div>
       <button class="allsites rv" id="openSites" type="button">
         <span class="l"><span class="big">70+ websites built and delivered</span><span class="small">Here are some of the live sites and projects I built.</span></span>
@@ -358,24 +383,47 @@
           <div class="num">01</div><h3>Voice Agents</h3>
           <p>Production AI receptionist and outbound agents. Answer calls, book appointments, qualify leads, and remember customers across calls and channels. Running around the clock for client operations.</p>
           <div class="stack"><span class="chip">LLM</span><span class="chip">Realtime voice</span><span class="chip">Calendar / CRM</span></div>
+          <!-- EVIDENCE (Task 8): drop the clip at images/evidence/voice-agent-call.mp3, then uncomment.
+          <figure class="ai-evidence"><audio controls preload="none" src="images/evidence/voice-agent-call.mp3"></audio><figcaption>A live AI voice agent handling a call.</figcaption></figure>
+          -->
         </div>
         <div class="ai-card rv">
           <span class="ai-ghost" aria-hidden="true">02</span>
           <div class="num">02</div><h3>Meeting Intelligence Platform</h3>
+          <div class="ai-stats">
+            <div class="as"><span class="n">54</span><span class="lbl">meetings processed</span></div>
+            <div class="as"><span class="n">602</span><span class="lbl">action items extracted</span></div>
+            <div class="as"><span class="n">163</span><span class="lbl">active topics tracked</span></div>
+            <div class="as"><span class="n">40-day</span><span class="lbl">deployment</span></div>
+          </div>
           <p>Turns live conversations into tracked, human-verified action items. Live transcription, context-grounded generation, and prompt-cached LLM pipelines under the hood.</p>
           <div class="stack"><span class="chip">Transcription</span><span class="chip">Prompt caching</span><span class="chip">Pipelines</span></div>
+          <!-- EVIDENCE (Task 8): drop the screenshot at images/evidence/meeting-intelligence-dashboard.png, then uncomment.
+          <figure class="ai-evidence"><button type="button" class="ev-btn" data-expand="images/evidence/meeting-intelligence-dashboard.png" data-alt="Meeting Intelligence dashboard showing tracked action items and active topics"><img class="ev-media" src="images/evidence/meeting-intelligence-dashboard.png" width="1600" height="1000" loading="lazy" alt="Meeting Intelligence dashboard showing tracked action items and active topics"></button><figcaption>Demo-tenant dashboard &middot; click to enlarge.</figcaption></figure>
+          -->
         </div>
         <div class="ai-card rv">
           <span class="ai-ghost" aria-hidden="true">03</span>
           <div class="num">03</div><h3>AEO Analysis Engine</h3>
           <p>A tool that scores pages for AI-citation readiness across every answer engine: information gain, entity strength, crawlability, and measured share of voice. Built and tested in TypeScript.</p>
           <div class="stack"><span class="chip">TypeScript</span><span class="chip">AEO / SEO</span><span class="chip">Tested</span></div>
+          <!-- EVIDENCE (Task 8): drop the report at images/evidence/aeo-sample-report.png, then uncomment.
+          <figure class="ai-evidence"><button type="button" class="ev-btn" data-expand="images/evidence/aeo-sample-report.png" data-alt="AEO analysis engine sample report scoring a public website for AI-citation readiness"><img class="ev-media" src="images/evidence/aeo-sample-report.png" width="1600" height="1000" loading="lazy" alt="AEO analysis engine sample report scoring a public website for AI-citation readiness"></button><figcaption>Sample report against a public site &middot; click to enlarge.</figcaption></figure>
+          -->
         </div>
         <div class="ai-card rv">
           <span class="ai-ghost" aria-hidden="true">04</span>
           <div class="num">04</div><h3>AP / AR Automation</h3>
           <p>A multi-tenant accounts-payable and receivable system built on n8n and Claude. Invoices are read and GL-coded against per-vendor memory, a human approves in Slack or email, and the bill is filed in the client's accounting system. Bank-change detection, an exception queue, and an append-only audit trail keep it safe; a human always approves, and it never moves money.</p>
           <div class="stack"><span class="chip">n8n</span><span class="chip">Claude</span><span class="chip">Human-in-the-loop</span></div>
+          <!-- EVIDENCE (Task 8): drop the three files under images/evidence/, then uncomment.
+               apar-n8n-topology.png, apar-exception-branch.png, apar-slack-approval.png
+          <figure class="ai-evidence multi">
+            <button type="button" class="ev-btn" data-expand="images/evidence/apar-n8n-topology.png" data-alt="n8n workflow canvas showing the full AP/AR automation topology"><img class="ev-media" src="images/evidence/apar-n8n-topology.png" width="1600" height="1000" loading="lazy" alt="n8n workflow canvas showing the full AP/AR automation topology"></button>
+            <button type="button" class="ev-btn" data-expand="images/evidence/apar-exception-branch.png" data-alt="n8n canvas cropped to the exception and human-approval branch"><img class="ev-media" src="images/evidence/apar-exception-branch.png" width="1600" height="1000" loading="lazy" alt="n8n canvas cropped to the exception and human-approval branch"></button>
+            <button type="button" class="ev-btn" data-expand="images/evidence/apar-slack-approval.png" data-alt="Slack approval card for an invoice awaiting human sign-off"><img class="ev-media" src="images/evidence/apar-slack-approval.png" width="1600" height="1000" loading="lazy" alt="Slack approval card for an invoice awaiting human sign-off"></button>
+          </figure>
+          -->
         </div>
       </div>
     </div>
@@ -389,9 +437,9 @@
         <p>Technical SEO audit scores on live client work. The same discipline now points at AI answer engines, which is AEO.</p>
       </div>
       <div class="res-grid">
-        <div class="res rv"><div class="site">East Boston Law</div><div class="ind">Legal &middot; Wix</div><div class="ba"><span class="b" data-count="54">0</span><span class="to">to</span><span class="a" data-count="85">0</span></div><div class="cap">SEO audit score</div></div>
-        <div class="res rv"><div class="site">Guard's Up Counseling</div><div class="ind">Healthcare &middot; Wix</div><div class="ba"><span class="b" data-count="57">0</span><span class="to">to</span><span class="a" data-count="85">0</span></div><div class="cap">SEO audit score</div></div>
-        <div class="res rv"><div class="site">Crush Planners</div><div class="ind">eCommerce &middot; Shopify</div><div class="ba"><span class="b" data-count="59">0</span><span class="to">to</span><span class="a" data-count="85">0</span></div><div class="cap">SEO audit score</div></div>
+        <div class="res rv"><div class="site">East Boston Law</div><div class="ind">Legal &middot; Wix</div><div class="ba"><span class="b" data-count="54">54</span><span class="to">to</span><span class="a" data-count="85">85</span></div><div class="cap">SEO audit score</div></div>
+        <div class="res rv"><div class="site">Guard's Up Counseling</div><div class="ind">Healthcare &middot; Wix</div><div class="ba"><span class="b" data-count="57">57</span><span class="to">to</span><span class="a" data-count="85">85</span></div><div class="cap">SEO audit score</div></div>
+        <div class="res rv"><div class="site">Crush Planners</div><div class="ind">eCommerce &middot; Shopify</div><div class="ba"><span class="b" data-count="59">59</span><span class="to">to</span><span class="a" data-count="85">85</span></div><div class="cap">SEO audit score</div></div>
       </div>
       <p class="res-note rv">Now focused on <b>answer-engine optimization</b>: getting businesses cited inside AI answers, not just ranked in classic search.</p>
     </div>
@@ -414,9 +462,9 @@
       <div class="xp-row rv">
         <div class="when">Jan - Feb 2026</div>
         <div>
-          <h3>Head of Web Design</h3>
-          <div class="co">Tradepro360 &middot; UK voice-AI company &middot; Remote</div>
-          <p>Established the web team's design systems, SOPs, and scalable Webflow architecture with Client-First naming and Relume components. Designed high-fidelity mockups, automated internal workflows to speed the team up, and trained developers on the standards.</p>
+          <h3>Head of Web Design &mdash; Tradepro360 <span class="xp-note">(department discontinued)</span></h3>
+          <div class="co">UK voice-AI company &middot; Remote</div>
+          <p>Tradepro360 offered high-quality Webflow builds &mdash; pitched as worth thousands, shipped in a week &mdash; as a loss leader to land clients and upsell AI voice agents. I built and led the web design department: design system, build standards, and delivery process. The company discontinued the web offering after concluding the model didn't fit their market. That experience directly shaped how I structured Default &mdash; productized recurring pricing, with the AI system as the product rather than the upsell.</p>
         </div>
       </div>
     </div>
@@ -425,7 +473,7 @@
   <section class="block contact" id="contact">
     <div class="wrap">
       <h2 class="rv">Have a system worth automating?</h2>
-      <p class="rv">Open to freelance AI automation, web, and AEO work.</p>
+      <p class="rv">Open to contract and full-time roles, and to project work through Default.</p>
       <a class="btn btn-primary mail rv" href="mailto:cordovarossmarco@gmail.com">cordovarossmarco@gmail.com <span class="arr">&rarr;</span></a>
       <div class="socials rv">
         <a href="http://www.linkedin.com/in/ross-marco-cordova-6b219a325" target="_blank" rel="noopener">LinkedIn</a>
@@ -445,6 +493,12 @@
       <div class="modal-head"><h2>Sites and projects I built</h2><p>70+ websites built and delivered. Here are some of the live ones you can visit.</p></div>
       <div class="site-grid" id="siteGrid"></div>
     </div></div>
+  </div>
+
+  <div class="modal" id="evidenceModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Evidence preview">
+    <div class="modal-bd" data-close></div>
+    <button class="modal-close" id="closeEvidence" type="button">Close (esc)</button>
+    <div class="modal-panel" data-lenis-prevent><div class="modal-wrap ev-lightbox"><img id="evidenceImg" alt=""></div></div>
   </div>
 
   <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
@@ -524,7 +578,22 @@
     document.getElementById("openSites").addEventListener("click", openModal);
     document.getElementById("closeSites").addEventListener("click", closeModal);
     modal.querySelector("[data-close]").addEventListener("click", closeModal);
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeModal(); });
+
+    // evidence lightbox — reuses the .modal pattern; delegated so it works for any
+    // [data-expand] evidence added to the AI system cards (image screenshots / diagrams).
+    var evModal = document.getElementById("evidenceModal"), evImg = document.getElementById("evidenceImg");
+    function openEvidence(src, alt) { evImg.src = src; evImg.alt = alt || ""; evModal.classList.add("open"); evModal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; if (lenis) lenis.stop(); }
+    function closeEvidence() { evModal.classList.remove("open"); evModal.setAttribute("aria-hidden", "true"); evImg.removeAttribute("src"); document.body.style.overflow = ""; if (lenis) lenis.start(); }
+    document.addEventListener("click", function (e) {
+      var t = e.target.closest ? e.target.closest("[data-expand]") : null;
+      if (!t) return;
+      e.preventDefault();
+      openEvidence(t.getAttribute("data-expand"), t.getAttribute("data-alt"));
+    });
+    document.getElementById("closeEvidence").addEventListener("click", closeEvidence);
+    evModal.querySelector("[data-close]").addEventListener("click", closeEvidence);
+
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeModal(); closeEvidence(); } });
 
     // reveal-on-scroll + count-up
     var nav = document.getElementById("nav");
