@@ -315,7 +315,7 @@
       <div class="hero-bottom">
         <h1 class="hero-h1">Ross Marco Cordova builds AI systems that solve <b>real business bottlenecks.</b></h1>
         <div class="hero-right">
-          <p class="hero-desc">An <b>AI Automation Specialist</b> shipping LLM-powered voice agents, meeting intelligence, and workflow automation, backed by 70+ production web builds.</p>
+          <p class="hero-desc"><span data-vary="article">An</span> <b data-vary="role">AI Automation Specialist</b> <span data-vary="pitch">shipping LLM-powered voice agents, meeting intelligence, and workflow automation, backed by 70+ production web builds.</span></p>
           <div class="hero-btns">
             <a href="#contact" class="btn btn-primary">Get in touch <span class="arr">&rarr;</span></a>
             <a href="#work" class="btn btn-ghost">See selected work</a>
@@ -517,6 +517,39 @@
   <script>
     document.documentElement.classList.add("js");
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // ---------- per-application role variants ----------
+    // One source of truth. Each job app gets a link like:  rmcdevs.netlify.app/?role=fullstack
+    // No param, or an unknown one, renders the default page below unchanged.
+    (function () {
+      var VARIANTS = {
+        "ai-eng": {
+          title: "Ross Marco Cordova — AI Automation Engineer",
+          article: "An", role: "AI Automation Engineer",
+          pitch: "shipping production LLM systems — voice agents, meeting intelligence, and multi-tenant workflow automation — backed by 70+ web builds."
+        },
+        "fullstack": {
+          title: "Ross Marco Cordova — Full-Stack Developer",
+          article: "A", role: "Full-Stack Developer",
+          pitch: "shipping 70+ production sites and custom tooling across Webflow, Shopify (Liquid), and Wix (Velo), now building LLM-powered automation end to end."
+        },
+        "aeo": {
+          title: "Ross Marco Cordova — AEO / SEO Specialist",
+          article: "An", role: "AEO / SEO Specialist",
+          pitch: "taking client sites from 54 to 85 on technical SEO and building an AEO engine that scores pages for citation in AI answers, backed by 70+ production builds."
+        }
+      };
+      try {
+        var q = new URLSearchParams(location.search);
+        var key = (q.get("role") || q.get("v") || "").toLowerCase();
+        var v = VARIANTS[key];
+        if (!v) return;
+        if (v.title) document.title = v.title;
+        var a = document.querySelector('[data-vary="article"]'); if (a && v.article) a.textContent = v.article;
+        var r = document.querySelector('[data-vary="role"]'); if (r && v.role) r.textContent = v.role;
+        var p = document.querySelector('[data-vary="pitch"]'); if (p && v.pitch) p.textContent = v.pitch;
+      } catch (e) {}
+    })();
 
     // Framer-style inertia scrolling
     var lenis = null;
