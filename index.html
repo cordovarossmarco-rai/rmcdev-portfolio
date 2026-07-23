@@ -199,6 +199,10 @@
   .shot img.loaded { opacity: 1; }
   .work-feature:hover .shot img.loaded, .work-card:hover .shot img.loaded { transform: scale(1.04); filter: grayscale(0); }
   .shot .skel { position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-3); }
+  /* Fallback tile for sites the screenshot service can't capture (bot-blocked), so they
+     don't render as a blank white box. Shows the domain instead. */
+  .shot.noshot { display: grid; place-items: center; background: linear-gradient(135deg, var(--bg-2), var(--surface-2)); }
+  .shot.noshot .ph-name { font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: var(--text-3); text-align: center; padding: 0 18px; word-break: break-word; }
   .work-body { padding: 26px 30px 30px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
   .work-body .tag { font-size: 13px; color: var(--text-3); font-weight: 500; }
   .work-body h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 600; letter-spacing: -0.025em; color: var(--text); margin-top: 7px; }
@@ -488,6 +492,7 @@
       </button>
       <!-- Inline builds grid — populated + shown only for variants with buildsGrid:true (e.g. the freelance track). -->
       <div id="inlineBuilds" class="site-grid" style="display:none"></div>
+      <button type="button" id="inlineBuildsMore" class="ai-cta" style="display:none">Show all sites <span class="arr">&rarr;</span></button>
     </div>
   </section>
 
@@ -727,9 +732,12 @@
       real.src = shotUrl(img.getAttribute("data-shot"), 1000);
     });
 
+    // [name, url, noShot?] — noShot flags sites the screenshot service can't capture
+    // (Shopify stores that block the mShots crawler); they get a domain tile instead of a blank box.
     var SITES = [
-      ["Hornblasters", "https://hornblasters.com/pages/goliath-mount"],
-      ["Crush Planners", "https://crushplanners.com/collections/all"],
+      ["Tradepro360", "https://tradepro360.com/"],
+      ["Hornblasters", "https://hornblasters.com/pages/goliath-mount", 1],
+      ["Crush Planners", "https://crushplanners.com/collections/all", 1],
       ["Revive & Align Pilates", "https://www.reviveandalignpilates.com/"],
       ["Inglesrud Corporation", "https://www.inglesrudcorporation.com/"],
       ["Kangen Service Center", "https://www.kangenservice-center.com/"],
@@ -753,13 +761,17 @@
     ];
     var grid = document.getElementById("siteGrid"), built = false;
     function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
-    function renderSitesInto(container, withSoon) {
-      SITES.forEach(function (s) {
+    function hostOf(u) { try { return new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return u; } }
+    function renderSitesInto(container, list, withSoon) {
+      list.forEach(function (s) {
         var a = document.createElement("a");
         a.className = "site-card"; a.href = s[1]; a.target = "_blank"; a.rel = "noopener";
-        a.innerHTML = '<div class="shot"><span class="skel">Preview</span><img alt="' + esc(s[0]) + ' preview" loading="lazy"></div>' +
-          '<div class="sc-body"><span class="nm">' + esc(s[0]) + '</span><span class="go">Visit &rarr;</span></div>';
+        var shot = s[2]
+          ? '<div class="shot noshot"><span class="ph-name">' + esc(hostOf(s[1])) + '</span></div>'
+          : '<div class="shot"><span class="skel">Preview</span><img alt="' + esc(s[0]) + ' preview" loading="lazy"></div>';
+        a.innerHTML = shot + '<div class="sc-body"><span class="nm">' + esc(s[0]) + '</span><span class="go">Visit &rarr;</span></div>';
         container.appendChild(a);
+        if (s[2]) return; // no screenshot available — domain tile already rendered
         var img = a.querySelector("img"), real = new Image();
         real.onload = function () { img.src = real.src; img.classList.add("loaded"); var sk = img.previousElementSibling; if (sk) sk.style.display = "none"; };
         real.src = shotUrl(s[1], 700);
@@ -771,11 +783,25 @@
         container.appendChild(soon);
       }
     }
-    function buildGrid() { if (built) return; built = true; renderSitesInto(grid, true); }
-    // Inline builds grid — rendered + shown only for variants with buildsGrid (freelance/freestyle track).
+    function buildGrid() { if (built) return; built = true; renderSitesInto(grid, SITES, true); }
+    // Inline builds grid — shown only for variants with buildsGrid (freelance/freestyle track).
+    // Renders the first 6, then a button reveals the rest (keeps the page short and avoids
+    // firing every screenshot request on load).
     if (ACTIVE && ACTIVE.buildsGrid) {
-      var _ib = document.getElementById("inlineBuilds");
-      if (_ib) { renderSitesInto(_ib, false); _ib.style.display = ""; }
+      var _ib = document.getElementById("inlineBuilds"), _more = document.getElementById("inlineBuildsMore");
+      if (_ib) {
+        var FIRST = 6;
+        renderSitesInto(_ib, SITES.slice(0, FIRST), false);
+        _ib.style.display = "";
+        if (_more && SITES.length > FIRST) {
+          _more.innerHTML = 'Show all ' + SITES.length + ' sites <span class="arr">&rarr;</span>';
+          _more.style.display = "";
+          _more.addEventListener("click", function () {
+            renderSitesInto(_ib, SITES.slice(FIRST), false);
+            _more.style.display = "none";
+          });
+        }
+      }
     }
     var modal = document.getElementById("sitesModal");
     function openModal() { buildGrid(); modal.classList.add("open"); modal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; if (lenis) lenis.stop(); }
