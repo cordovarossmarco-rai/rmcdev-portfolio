@@ -347,9 +347,9 @@
     <div class="wrap">
       <div class="sec-head rv">
         <span class="eyebrow">Selected work</span>
-        <h2>Flagship builds and the work behind them.</h2>
+        <h2 data-vary="work-heading">Flagship builds and the work behind them.</h2>
       </div>
-      <div class="work-row3">
+      <div class="work-row3" data-hideable="flagships">
         <a class="work-card rv" href="https://default-ai.agency/" target="_blank" rel="noopener">
           <div class="shot"><span class="skel">Loading preview</span><img data-shot="https://default-ai.agency/" alt="Default-AI website preview" loading="lazy"></div>
           <div class="wc-body">
@@ -369,10 +369,12 @@
           </div>
         </a>
       </div>
-      <button class="allsites rv" id="openSites" type="button">
+      <button class="allsites rv" id="openSites" type="button" data-hideable="flagships">
         <span class="l"><span class="big">70+ websites built and delivered</span><span class="small">Here are some of the live sites and projects I built.</span></span>
         <span class="r">Open the list <span>&rarr;</span></span>
       </button>
+      <!-- Inline builds grid — populated + shown only for variants with buildsGrid:true (e.g. the freelance track). -->
+      <div id="inlineBuilds" class="site-grid" style="display:none"></div>
     </div>
   </section>
 
@@ -458,9 +460,9 @@
       <div class="xp-row rv">
         <div class="when">Feb 2026 &mdash; Present</div>
         <div>
-          <h3>AI Automation Specialist &mdash; Default-AI</h3>
+          <h3 data-vary="xp1-title">AI Automation Specialist &mdash; Default-AI</h3>
           <div class="co">Independent practice &middot; Remote</div>
-          <p>Founded and operate Default-AI, building and deploying AI automation systems for US businesses. Shipped a production voice-agent platform, a meeting-intelligence system running on a live client deployment, an AEO analysis engine, and a multi-tenant AP/AR automation with human-in-the-loop approval. Full lifecycle: discovery, architecture, build, deployment, and ongoing support.</p>
+          <p data-vary="xp1-body">Founded and operate Default-AI, building and deploying AI automation systems for US businesses. Shipped a production voice-agent platform, a meeting-intelligence system running on a live client deployment, an AEO analysis engine, and a multi-tenant AP/AR automation with human-in-the-loop approval. Full lifecycle: discovery, architecture, build, deployment, and ongoing support.</p>
         </div>
       </div>
       <div class="xp-row rv">
@@ -476,7 +478,7 @@
         <div>
           <h3>Head of Web Design &mdash; Tradepro360 <span class="xp-note">(department discontinued)</span></h3>
           <div class="co">UK voice-AI company &middot; Remote</div>
-          <p>Established the web team's design system, build standards, and SOPs &mdash; Client-First naming, Relume components, and scalable Webflow architecture the team builds on. Designed high-fidelity mockups, automated internal workflows to speed up delivery, and trained developers on the standards. The web offering was a loss leader intended to land clients for AI voice agents; the company discontinued it after concluding the model didn't fit their market. That shaped how I structured Default-AI &mdash; productized recurring pricing, with the AI system as the product rather than the upsell.</p>
+          <p>Established the web team's design system, build standards, and SOPs &mdash; Client-First naming, Relume components, and scalable Webflow architecture the team builds on. Designed high-fidelity mockups, automated internal workflows to speed up delivery, and trained developers on the standards. The web offering was a loss leader intended to land clients for AI voice agents; the company discontinued it after concluding the model didn't fit their market. That shaped how I structured <span data-vary="tradepro-brand">Default-AI</span> &mdash; productized recurring pricing, with the AI system as the product rather than the upsell.</p>
         </div>
       </div>
     </div>
@@ -485,11 +487,11 @@
   <section class="block contact" id="contact">
     <div class="wrap">
       <h2 class="rv">Have a system worth automating?</h2>
-      <p class="rv">Open to contract and full-time roles, and to project work through Default-AI.</p>
+      <p class="rv" data-vary="closing">Open to contract and full-time roles, and to project work through Default-AI.</p>
       <a class="btn btn-primary mail rv" href="mailto:cordovarossmarco@gmail.com">cordovarossmarco@gmail.com <span class="arr">&rarr;</span></a>
       <div class="socials rv">
         <a href="http://www.linkedin.com/in/ross-marco-cordova-6b219a325" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://default-ai.agency/" target="_blank" rel="noopener">Default-AI</a>
+        <a href="https://default-ai.agency/" target="_blank" rel="noopener" data-hideable="contact-brand">Default-AI</a>
       </div>
     </div>
   </section>
@@ -521,35 +523,56 @@
     // ---------- per-application role variants ----------
     // One source of truth. Each job app gets a link like:  rmcdevs.netlify.app/?role=web
     // No param, or an unknown one, renders the default page below unchanged.
+    // Version 1 (AI Automation Specialist) is the DEFAULT page — the plain link, no param.
+    //
+    // Freelance / no-founder track (the 4th "freestyle" slot). Reframes the site as freelance
+    // delivery, hides every Default-AI / founder signal, and swaps the 2 flagships for the full
+    // builds grid. Both ?role=freelance and ?role=freestyle load it. Tweak copy per company below.
+    var FREELANCE = {
+      title: "Ross Marco Cordova — AI Automation Engineer",
+      article: "An", role: "AI Automation Engineer",
+      pitch: "delivering production AI automation for US businesses since February 2026 — voice agents that answer phones and book appointments, meeting intelligence, and end-to-end workflow automation.",
+      over: {
+        "work-heading": "Websites I've designed and built.",
+        "xp1-title": "AI Automation Engineer — Freelance",
+        "xp1-body": "Since February 2026, delivering production AI automation systems for US businesses: a voice-agent platform (an AI receptionist that answers calls, books appointments, and qualifies leads), a meeting-intelligence system on a live client deployment, an AEO analysis engine, and multi-tenant AP/AR automation with human-in-the-loop approval. Full lifecycle — discovery, architecture, build, deployment, and support.",
+        "tradepro-brand": "my own automation practice",
+        "closing": "Open to full-time and contract roles building AI automation systems end to end."
+      },
+      hide: ["flagships", "contact-brand"],
+      buildsGrid: true
+    };
+    var VARIANTS = {
+      "aeo": {
+        title: "Ross Marco Cordova — AEO / SEO Specialist",
+        article: "An", role: "AEO / SEO Specialist",
+        pitch: "taking client sites from 54 to 85 on technical SEO and building an AEO engine that scores pages for citation in AI answers, backed by 70+ production builds."
+      },
+      "web": {
+        title: "Ross Marco Cordova — Web Designer & Developer",
+        article: "A", role: "Web Designer & Developer",
+        pitch: "who has shipped 70+ production sites across Webflow, Shopify (Liquid), and Wix (Velo / JavaScript), and led a web team's design system, mockups, and build standards."
+      },
+      "freelance": FREELANCE,
+      "freestyle": FREELANCE
+    };
+    var ACTIVE = null;
     (function () {
-      // Version 1 (AI Automation Specialist) is the DEFAULT page — sent as the plain link, no param.
-      var VARIANTS = {
-        "aeo": {
-          title: "Ross Marco Cordova — AEO / SEO Specialist",
-          article: "An", role: "AEO / SEO Specialist",
-          pitch: "taking client sites from 54 to 85 on technical SEO and building an AEO engine that scores pages for citation in AI answers, backed by 70+ production builds."
-        },
-        "web": {
-          title: "Ross Marco Cordova — Web Designer & Developer",
-          article: "A", role: "Web Designer & Developer",
-          pitch: "who has shipped 70+ production sites across Webflow, Shopify (Liquid), and Wix (Velo / JavaScript), and led a web team's design system, mockups, and build standards."
-        },
-        // Freestyle scratch track — clone of the default; edit these three fields per company when a role needs a custom angle.
-        "freestyle": {
-          title: "Ross Marco Cordova - AI Automation Specialist",
-          article: "An", role: "AI Automation Specialist",
-          pitch: "shipping LLM-powered voice agents, meeting intelligence, and workflow automation, backed by 70+ production web builds."
-        }
-      };
       try {
         var q = new URLSearchParams(location.search);
         var key = (q.get("role") || q.get("v") || "").toLowerCase();
         var v = VARIANTS[key];
         if (!v) return;
+        ACTIVE = v;
         if (v.title) document.title = v.title;
-        var a = document.querySelector('[data-vary="article"]'); if (a && v.article) a.textContent = v.article;
-        var r = document.querySelector('[data-vary="role"]'); if (r && v.role) r.textContent = v.role;
-        var p = document.querySelector('[data-vary="pitch"]'); if (p && v.pitch) p.textContent = v.pitch;
+        function setText(sel, val) { if (val == null) return; var el = document.querySelector(sel); if (el) el.textContent = val; }
+        setText('[data-vary="article"]', v.article);
+        setText('[data-vary="role"]', v.role);
+        setText('[data-vary="pitch"]', v.pitch);
+        if (v.over) Object.keys(v.over).forEach(function (k) { setText('[data-vary="' + k + '"]', v.over[k]); });
+        if (v.hide) v.hide.forEach(function (h) {
+          document.querySelectorAll('[data-hideable="' + h + '"]').forEach(function (e) { e.style.display = "none"; });
+        });
       } catch (e) {}
     })();
 
@@ -580,7 +603,6 @@
       ["Crush Planners", "https://crushplanners.com/collections/all"],
       ["Revive & Align Pilates", "https://www.reviveandalignpilates.com/"],
       ["Inglesrud Corporation", "https://www.inglesrudcorporation.com/"],
-      ["Pacific Artists Studio", "https://www.pacificartistsstudio.com/"],
       ["Kangen Service Center", "https://www.kangenservice-center.com/"],
       ["Dial Septic Tank Services", "https://www.dialseptic.com/"],
       ["King City Shopping Center", "https://www.kingscitymerchants.com/"],
@@ -602,22 +624,29 @@
     ];
     var grid = document.getElementById("siteGrid"), built = false;
     function esc(s) { var d = document.createElement("div"); d.textContent = s; return d.innerHTML; }
-    function buildGrid() {
-      if (built) return; built = true;
+    function renderSitesInto(container, withSoon) {
       SITES.forEach(function (s) {
         var a = document.createElement("a");
         a.className = "site-card"; a.href = s[1]; a.target = "_blank"; a.rel = "noopener";
         a.innerHTML = '<div class="shot"><span class="skel">Preview</span><img alt="' + esc(s[0]) + ' preview" loading="lazy"></div>' +
           '<div class="sc-body"><span class="nm">' + esc(s[0]) + '</span><span class="go">Visit &rarr;</span></div>';
-        grid.appendChild(a);
+        container.appendChild(a);
         var img = a.querySelector("img"), real = new Image();
         real.onload = function () { img.src = real.src; img.classList.add("loaded"); var sk = img.previousElementSibling; if (sk) sk.style.display = "none"; };
         real.src = shotUrl(s[1], 700);
       });
-      var soon = document.createElement("div");
-      soon.className = "site-card soon";
-      soon.innerHTML = '<div class="soon-inner">More projects<br>uploading soon</div>';
-      grid.appendChild(soon);
+      if (withSoon) {
+        var soon = document.createElement("div");
+        soon.className = "site-card soon";
+        soon.innerHTML = '<div class="soon-inner">More projects<br>uploading soon</div>';
+        container.appendChild(soon);
+      }
+    }
+    function buildGrid() { if (built) return; built = true; renderSitesInto(grid, true); }
+    // Inline builds grid — rendered + shown only for variants with buildsGrid (freelance/freestyle track).
+    if (ACTIVE && ACTIVE.buildsGrid) {
+      var _ib = document.getElementById("inlineBuilds");
+      if (_ib) { renderSitesInto(_ib, false); _ib.style.display = ""; }
     }
     var modal = document.getElementById("sitesModal");
     function openModal() { buildGrid(); modal.classList.add("open"); modal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; if (lenis) lenis.stop(); }
