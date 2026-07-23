@@ -522,21 +522,23 @@
     // One source of truth. Each job app gets a link like:  rmcdevs.netlify.app/?role=fullstack
     // No param, or an unknown one, renders the default page below unchanged.
     (function () {
+      // Version 1 (AI Automation Specialist) is the DEFAULT page — sent as the plain link, no param.
       var VARIANTS = {
-        "ai-eng": {
-          title: "Ross Marco Cordova — AI Automation Engineer",
-          article: "An", role: "AI Automation Engineer",
-          pitch: "shipping production LLM systems — voice agents, meeting intelligence, and multi-tenant workflow automation — backed by 70+ web builds."
-        },
-        "fullstack": {
-          title: "Ross Marco Cordova — Full-Stack Developer",
-          article: "A", role: "Full-Stack Developer",
-          pitch: "shipping 70+ production sites and custom tooling across Webflow, Shopify (Liquid), and Wix (Velo), now building LLM-powered automation end to end."
-        },
         "aeo": {
           title: "Ross Marco Cordova — AEO / SEO Specialist",
           article: "An", role: "AEO / SEO Specialist",
           pitch: "taking client sites from 54 to 85 on technical SEO and building an AEO engine that scores pages for citation in AI answers, backed by 70+ production builds."
+        },
+        "web": {
+          title: "Ross Marco Cordova — Web Designer & Developer",
+          article: "A", role: "Web Designer & Developer",
+          pitch: "who has shipped 70+ production sites across Webflow, Shopify (Liquid), and Wix (Velo / JavaScript), and led a web team's design system, mockups, and build standards."
+        },
+        // Freestyle scratch track — clone of the default; edit these three fields per company when a role needs a custom angle.
+        "freestyle": {
+          title: "Ross Marco Cordova - AI Automation Specialist",
+          article: "An", role: "AI Automation Specialist",
+          pitch: "shipping LLM-powered voice agents, meeting intelligence, and workflow automation, backed by 70+ production web builds."
         }
       };
       try {
